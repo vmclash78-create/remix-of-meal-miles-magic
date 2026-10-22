@@ -23,7 +23,8 @@ function Splash() {
 
   const go = async () => {
     const { data } = await supabase.auth.getSession();
-    navigate({ to: data.session ? "/inicio" : "/auth", replace: true });
+    if (data.session) navigate({ to: "/inicio", replace: true });
+    else navigate({ to: "/auth", search: { redirect: undefined }, replace: true });
   };
 
   useEffect(() => {
