@@ -16,6 +16,10 @@ import { Route as ResetPasswordRouteImport } from './routes/reset-password'
 import { Route as AuthenticatedCestaRouteImport } from './routes/_authenticated/cesta'
 import { Route as AuthenticatedConfirmarLocalRouteImport } from './routes/_authenticated/confirmar-local'
 import { Route as AuthenticatedInicioRouteImport } from './routes/_authenticated/inicio'
+import { Route as AuthenticatedOfertasRouteImport } from './routes/_authenticated/ofertas'
+import { Route as AuthenticatedPerfilRouteImport } from './routes/_authenticated/perfil'
+import { Route as AuthenticatedSalvosRouteImport } from './routes/_authenticated/salvos'
+import { Route as AuthenticatedPedidoIdRouteImport } from './routes/_authenticated/pedido.$id'
 import { Route as AuthenticatedRestauranteSlugRouteImport } from './routes/_authenticated/restaurante.$slug'
 
 const IndexRoute = IndexRouteImport.update({
@@ -53,6 +57,26 @@ const AuthenticatedInicioRoute = AuthenticatedInicioRouteImport.update({
   path: '/inicio',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedOfertasRoute = AuthenticatedOfertasRouteImport.update({
+  id: '/ofertas',
+  path: '/ofertas',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedPerfilRoute = AuthenticatedPerfilRouteImport.update({
+  id: '/perfil',
+  path: '/perfil',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedSalvosRoute = AuthenticatedSalvosRouteImport.update({
+  id: '/salvos',
+  path: '/salvos',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedPedidoIdRoute = AuthenticatedPedidoIdRouteImport.update({
+  id: '/pedido/$id',
+  path: '/pedido/$id',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 const AuthenticatedRestauranteSlugRoute =
   AuthenticatedRestauranteSlugRouteImport.update({
     id: '/restaurante/$slug',
@@ -67,6 +91,10 @@ export interface FileRoutesByFullPath {
   '/cesta': typeof AuthenticatedCestaRoute
   '/confirmar-local': typeof AuthenticatedConfirmarLocalRoute
   '/inicio': typeof AuthenticatedInicioRoute
+  '/ofertas': typeof AuthenticatedOfertasRoute
+  '/perfil': typeof AuthenticatedPerfilRoute
+  '/salvos': typeof AuthenticatedSalvosRoute
+  '/pedido/$id': typeof AuthenticatedPedidoIdRoute
   '/restaurante/$slug': typeof AuthenticatedRestauranteSlugRoute
 }
 export interface FileRoutesByTo {
@@ -76,6 +104,10 @@ export interface FileRoutesByTo {
   '/cesta': typeof AuthenticatedCestaRoute
   '/confirmar-local': typeof AuthenticatedConfirmarLocalRoute
   '/inicio': typeof AuthenticatedInicioRoute
+  '/ofertas': typeof AuthenticatedOfertasRoute
+  '/perfil': typeof AuthenticatedPerfilRoute
+  '/salvos': typeof AuthenticatedSalvosRoute
+  '/pedido/$id': typeof AuthenticatedPedidoIdRoute
   '/restaurante/$slug': typeof AuthenticatedRestauranteSlugRoute
 }
 export interface FileRoutesById {
@@ -87,6 +119,10 @@ export interface FileRoutesById {
   '/_authenticated/cesta': typeof AuthenticatedCestaRoute
   '/_authenticated/confirmar-local': typeof AuthenticatedConfirmarLocalRoute
   '/_authenticated/inicio': typeof AuthenticatedInicioRoute
+  '/_authenticated/ofertas': typeof AuthenticatedOfertasRoute
+  '/_authenticated/perfil': typeof AuthenticatedPerfilRoute
+  '/_authenticated/salvos': typeof AuthenticatedSalvosRoute
+  '/_authenticated/pedido/$id': typeof AuthenticatedPedidoIdRoute
   '/_authenticated/restaurante/$slug': typeof AuthenticatedRestauranteSlugRoute
 }
 export interface FileRouteTypes {
@@ -98,6 +134,10 @@ export interface FileRouteTypes {
     | '/cesta'
     | '/confirmar-local'
     | '/inicio'
+    | '/ofertas'
+    | '/perfil'
+    | '/salvos'
+    | '/pedido/$id'
     | '/restaurante/$slug'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -107,6 +147,10 @@ export interface FileRouteTypes {
     | '/cesta'
     | '/confirmar-local'
     | '/inicio'
+    | '/ofertas'
+    | '/perfil'
+    | '/salvos'
+    | '/pedido/$id'
     | '/restaurante/$slug'
   id:
     | '__root__'
@@ -117,6 +161,10 @@ export interface FileRouteTypes {
     | '/_authenticated/cesta'
     | '/_authenticated/confirmar-local'
     | '/_authenticated/inicio'
+    | '/_authenticated/ofertas'
+    | '/_authenticated/perfil'
+    | '/_authenticated/salvos'
+    | '/_authenticated/pedido/$id'
     | '/_authenticated/restaurante/$slug'
   fileRoutesById: FileRoutesById
 }
@@ -178,6 +226,34 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedInicioRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/ofertas': {
+      id: '/_authenticated/ofertas'
+      path: '/ofertas'
+      fullPath: '/ofertas'
+      preLoaderRoute: typeof AuthenticatedOfertasRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/perfil': {
+      id: '/_authenticated/perfil'
+      path: '/perfil'
+      fullPath: '/perfil'
+      preLoaderRoute: typeof AuthenticatedPerfilRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/salvos': {
+      id: '/_authenticated/salvos'
+      path: '/salvos'
+      fullPath: '/salvos'
+      preLoaderRoute: typeof AuthenticatedSalvosRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/pedido/$id': {
+      id: '/_authenticated/pedido/$id'
+      path: '/pedido/$id'
+      fullPath: '/pedido/$id'
+      preLoaderRoute: typeof AuthenticatedPedidoIdRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/restaurante/$slug': {
       id: '/_authenticated/restaurante/$slug'
       path: '/restaurante/$slug'
@@ -192,6 +268,10 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedCestaRoute: typeof AuthenticatedCestaRoute
   AuthenticatedConfirmarLocalRoute: typeof AuthenticatedConfirmarLocalRoute
   AuthenticatedInicioRoute: typeof AuthenticatedInicioRoute
+  AuthenticatedOfertasRoute: typeof AuthenticatedOfertasRoute
+  AuthenticatedPerfilRoute: typeof AuthenticatedPerfilRoute
+  AuthenticatedSalvosRoute: typeof AuthenticatedSalvosRoute
+  AuthenticatedPedidoIdRoute: typeof AuthenticatedPedidoIdRoute
   AuthenticatedRestauranteSlugRoute: typeof AuthenticatedRestauranteSlugRoute
 }
 
@@ -199,6 +279,10 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedCestaRoute: AuthenticatedCestaRoute,
   AuthenticatedConfirmarLocalRoute: AuthenticatedConfirmarLocalRoute,
   AuthenticatedInicioRoute: AuthenticatedInicioRoute,
+  AuthenticatedOfertasRoute: AuthenticatedOfertasRoute,
+  AuthenticatedPerfilRoute: AuthenticatedPerfilRoute,
+  AuthenticatedSalvosRoute: AuthenticatedSalvosRoute,
+  AuthenticatedPedidoIdRoute: AuthenticatedPedidoIdRoute,
   AuthenticatedRestauranteSlugRoute: AuthenticatedRestauranteSlugRoute,
 }
 
