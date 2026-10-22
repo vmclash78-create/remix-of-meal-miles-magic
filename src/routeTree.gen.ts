@@ -13,7 +13,10 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as ResetPasswordRouteImport } from './routes/reset-password'
+import { Route as AuthenticatedCestaRouteImport } from './routes/_authenticated/cesta'
+import { Route as AuthenticatedConfirmarLocalRouteImport } from './routes/_authenticated/confirmar-local'
 import { Route as AuthenticatedInicioRouteImport } from './routes/_authenticated/inicio'
+import { Route as AuthenticatedRestauranteSlugRouteImport } from './routes/_authenticated/restaurante.$slug'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -34,23 +37,46 @@ const ResetPasswordRoute = ResetPasswordRouteImport.update({
   path: '/reset-password',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthenticatedCestaRoute = AuthenticatedCestaRouteImport.update({
+  id: '/cesta',
+  path: '/cesta',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedConfirmarLocalRoute =
+  AuthenticatedConfirmarLocalRouteImport.update({
+    id: '/confirmar-local',
+    path: '/confirmar-local',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 const AuthenticatedInicioRoute = AuthenticatedInicioRouteImport.update({
   id: '/inicio',
   path: '/inicio',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedRestauranteSlugRoute =
+  AuthenticatedRestauranteSlugRouteImport.update({
+    id: '/restaurante/$slug',
+    path: '/restaurante/$slug',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
   '/reset-password': typeof ResetPasswordRoute
+  '/cesta': typeof AuthenticatedCestaRoute
+  '/confirmar-local': typeof AuthenticatedConfirmarLocalRoute
   '/inicio': typeof AuthenticatedInicioRoute
+  '/restaurante/$slug': typeof AuthenticatedRestauranteSlugRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
   '/reset-password': typeof ResetPasswordRoute
+  '/cesta': typeof AuthenticatedCestaRoute
+  '/confirmar-local': typeof AuthenticatedConfirmarLocalRoute
   '/inicio': typeof AuthenticatedInicioRoute
+  '/restaurante/$slug': typeof AuthenticatedRestauranteSlugRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -58,20 +84,40 @@ export interface FileRoutesById {
   '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
   '/auth': typeof AuthRoute
   '/reset-password': typeof ResetPasswordRoute
+  '/_authenticated/cesta': typeof AuthenticatedCestaRoute
+  '/_authenticated/confirmar-local': typeof AuthenticatedConfirmarLocalRoute
   '/_authenticated/inicio': typeof AuthenticatedInicioRoute
+  '/_authenticated/restaurante/$slug': typeof AuthenticatedRestauranteSlugRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/auth' | '/reset-password' | '/inicio'
+  fullPaths:
+    | '/'
+    | '/auth'
+    | '/reset-password'
+    | '/cesta'
+    | '/confirmar-local'
+    | '/inicio'
+    | '/restaurante/$slug'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/auth' | '/reset-password' | '/inicio'
+  to:
+    | '/'
+    | '/auth'
+    | '/reset-password'
+    | '/cesta'
+    | '/confirmar-local'
+    | '/inicio'
+    | '/restaurante/$slug'
   id:
     | '__root__'
     | '/'
     | '/_authenticated'
     | '/auth'
     | '/reset-password'
+    | '/_authenticated/cesta'
+    | '/_authenticated/confirmar-local'
     | '/_authenticated/inicio'
+    | '/_authenticated/restaurante/$slug'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -111,6 +157,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ResetPasswordRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_authenticated/cesta': {
+      id: '/_authenticated/cesta'
+      path: '/cesta'
+      fullPath: '/cesta'
+      preLoaderRoute: typeof AuthenticatedCestaRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/confirmar-local': {
+      id: '/_authenticated/confirmar-local'
+      path: '/confirmar-local'
+      fullPath: '/confirmar-local'
+      preLoaderRoute: typeof AuthenticatedConfirmarLocalRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/inicio': {
       id: '/_authenticated/inicio'
       path: '/inicio'
@@ -118,15 +178,28 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedInicioRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/restaurante/$slug': {
+      id: '/_authenticated/restaurante/$slug'
+      path: '/restaurante/$slug'
+      fullPath: '/restaurante/$slug'
+      preLoaderRoute: typeof AuthenticatedRestauranteSlugRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
   }
 }
 
 interface AuthenticatedRouteRouteChildren {
+  AuthenticatedCestaRoute: typeof AuthenticatedCestaRoute
+  AuthenticatedConfirmarLocalRoute: typeof AuthenticatedConfirmarLocalRoute
   AuthenticatedInicioRoute: typeof AuthenticatedInicioRoute
+  AuthenticatedRestauranteSlugRoute: typeof AuthenticatedRestauranteSlugRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
+  AuthenticatedCestaRoute: AuthenticatedCestaRoute,
+  AuthenticatedConfirmarLocalRoute: AuthenticatedConfirmarLocalRoute,
   AuthenticatedInicioRoute: AuthenticatedInicioRoute,
+  AuthenticatedRestauranteSlugRoute: AuthenticatedRestauranteSlugRoute,
 }
 
 const AuthenticatedRouteRouteWithChildren =
