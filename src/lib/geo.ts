@@ -44,3 +44,20 @@ export function fallbackRoute(from: LatLng, to: LatLng): LatLng[] {
   const mid3: LatLng = [to[0], mid2[1]];
   return [from, mid1, mid2, mid3, to];
 }
+
+/** Splits a route at `progress` into the traveled and remaining parts. */
+export function splitRoute(route: LatLng[], progress: number): { traveled: LatLng[]; remaining: LatLng[]; point: LatLng } {
+  const point = pointAlong(route, progress);
+  if (route.length < 2) return { traveled: [point], remaining: [point], point };
+  const target = routeLengthKm(route) * Math.min(1, Math.max(0, progress));
+  let acc = 0;
+  let idx = route.length - 1;
+  for (let i = 1; i < route.length; i++) {
+    acc += haversineKm(route[i - 1], route[i]);
+    if (acc >= target) {
+      idx = i;
+      break;
+    }
+  }
+  return { traveled: [...route.slice(0, idx), point], remaining: [point, ...route.slice(idx)], point };
+}
