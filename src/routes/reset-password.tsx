@@ -53,7 +53,7 @@ function ResetPassword() {
   return (
     <div className="min-h-screen bg-muted/60">
       <div className="mx-auto flex min-h-screen w-full max-w-md flex-col bg-card px-6 py-12">
-        <Logo className="text-3xl" />
+        <Logo className="h-9" />
         <div className="mt-10 flex h-16 w-16 items-center justify-center rounded-full bg-primary-soft text-primary-deep">
           <KeyRound className="h-7 w-7" />
         </div>

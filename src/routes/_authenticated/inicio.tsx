@@ -5,9 +5,9 @@ import { ChevronDown, MapPin, RotateCcw, Search, Store, X } from "lucide-react";
 import { formatDistanceToNow } from "date-fns";
 import { ptBR } from "date-fns/locale";
 import { toast } from "sonner";
-import courierImg from "@/assets/courier-scooter.png";
 import { AddressSheet } from "@/components/foodup/AddressSheet";
 import { CouponCard } from "@/components/foodup/CouponCard";
+import { Mascot } from "@/components/foodup/Mascot";
 import { MobileShell } from "@/components/foodup/MobileShell";
 import { RestaurantCard, RestaurantCardSkeleton } from "@/components/foodup/RestaurantCard";
 import { EmptyState, ErrorState } from "@/components/foodup/StateViews";
@@ -89,7 +89,7 @@ function HomePage() {
 
   return (
     <MobileShell withNav>
-      {/* Green header */}
+      {/* Header escuro da marca */}
       <header className="rounded-b-[32px] bg-gradient-header px-5 pb-6 pt-[calc(env(safe-area-inset-top)+16px)]">
         <div className="flex items-center gap-3">
           <Link to="/perfil" aria-label="Perfil" className="flex h-11 w-11 shrink-0 items-center justify-center overflow-hidden rounded-full bg-card text-sm font-bold text-primary-deep ring-2 ring-primary-foreground/40">
@@ -132,20 +132,20 @@ function HomePage() {
         {/* Banner */}
         {!search && (
           <section className="px-5">
-            <div className="relative overflow-hidden rounded-[24px] bg-primary p-5 text-primary-foreground shadow-soft">
+            <div className="relative overflow-hidden rounded-[24px] bg-gradient-header p-5 text-brand-white shadow-soft">
               <div className="relative z-10 max-w-[58%]">
-                <p className="text-[11px] font-semibold uppercase tracking-wider opacity-85">Só hoje</p>
+                <p className="text-[11px] font-semibold uppercase tracking-wider text-highlight">Só hoje</p>
                 <h2 className="mt-1 text-2xl font-extrabold leading-tight">Entrega rápida e grátis!</h2>
                 <p className="mt-1 text-xs opacity-90">Use o cupom FRETEGRATIS em qualquer pedido.</p>
                 <button
                   type="button"
                   onClick={() => applyCoupon("FRETEGRATIS")}
-                  className="mt-3 rounded-full bg-card px-4 py-2 text-xs font-bold text-primary-deep active:scale-95"
+                  className="mt-3 rounded-xl bg-primary px-4 py-2 text-xs font-bold text-primary-foreground active:scale-95"
                 >
                   {couponCode === "FRETEGRATIS" ? "Cupom ativo ✓" : "Pedir agora"}
                 </button>
               </div>
-              <img src={courierImg} alt="" width={1024} height={1024} className="absolute -bottom-6 -right-6 w-48 animate-float" />
+              <Mascot alt="" className="absolute -bottom-3 -right-8 w-52 animate-float" />
             </div>
           </section>
         )}
