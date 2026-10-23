@@ -30,7 +30,7 @@ const FINISHED = new Set(["delivered", "cancelled"]);
 
 function OrdersPage() {
   const user = useAuthUser();
-  const { data, isLoading, error, refetch } = useQuery(ordersQuery(user.id));
+  const { data, isLoading, error, refetch } = useOrders(user.id);
   const active = (data ?? []).filter((o) => !FINISHED.has(o.status));
   const past = (data ?? []).filter((o) => FINISHED.has(o.status));
 
@@ -63,11 +63,8 @@ function OrdersPage() {
   );
 }
 
-type OrderRow = NonNullable<ReturnType<typeof ordersQuery>["queryFn"]> extends (...a: never[]) => Promise<infer R>
-  ? R extends (infer O)[]
-    ? O
-    : never
-  : never;
+const useOrders = (userId: string) => useQuery(ordersQuery(userId));
+type OrderRow = NonNullable<ReturnType<typeof useOrders>["data"]>[number];
 
 function OrderList({ title, orders, highlight = false }: { title: string; orders: OrderRow[]; highlight?: boolean }) {
   return (
