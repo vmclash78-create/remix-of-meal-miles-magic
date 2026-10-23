@@ -10,6 +10,8 @@
 <!-- LOVABLE:END -->
 
 ## Architecture rules
+- Brand colors exist only as CSS variables in `src/styles.css` (dark theme on `.dark`, the default; light in `:root`); components use semantic utilities, never raw color values, so the theme toggle and rebrands stay one-file changes.
+- Brand visuals are code or static files: logo/symbol/wordmark are SVG React components (`src/components/foodup/Logo.tsx`), the mascot is served from `public/brand/` via `<Mascot />` with webp + png fallback and fixed dimensions to avoid layout shift.
 - Pricing and order-simulation rules live in pure modules (`src/lib/pricing.ts`, `src/lib/simulation.ts`) shared by client and server; the server recomputes totals on order placement, so clients never write orders directly.
 - Orders, order items and status events are written only by server functions with the admin client after ownership checks; users have read-only access via RLS.
 - Leaflet maps are loaded lazily behind `ClientOnly` (`src/components/map/index.tsx`) because Leaflet touches `window` at import time.

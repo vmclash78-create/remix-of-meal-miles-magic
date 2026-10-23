@@ -7,6 +7,7 @@ import { addressIcon } from "@/components/foodup/AddressSheet";
 import { MobileShell } from "@/components/foodup/MobileShell";
 import { PillButton } from "@/components/foodup/PillButton";
 import { ErrorState } from "@/components/foodup/StateViews";
+import { ThemeToggle } from "@/components/foodup/ThemeToggle";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useAuthUser } from "@/hooks/use-auth-user";
 import { supabase } from "@/integrations/supabase/client";
@@ -62,10 +63,11 @@ function ProfilePage() {
           <div className="flex h-16 w-16 items-center justify-center overflow-hidden rounded-full bg-card text-xl font-bold text-primary-deep">
             {profile.data?.avatar_url ? <img src={profile.data.avatar_url} alt="" className="h-full w-full object-cover" /> : name.slice(0, 1).toUpperCase()}
           </div>
-          <div className="min-w-0">
+          <div className="min-w-0 flex-1">
             {profile.isLoading ? <Skeleton className="h-5 w-32 bg-primary-foreground/30" /> : <p className="truncate text-lg font-bold">{name}</p>}
             <p className="truncate text-sm opacity-85">{user.email}</p>
           </div>
+          <ThemeToggle className="shrink-0" />
         </div>
       </header>
 
