@@ -3,10 +3,11 @@ import { useEffect, useState, type FormEvent } from "react";
 import { Eye, EyeOff, Lock, Mail, MailCheck, User } from "lucide-react";
 import { toast } from "sonner";
 import { z } from "zod";
-import courierImg from "@/assets/courier-scooter.png";
 import { BottomSheet } from "@/components/foodup/BottomSheet";
 import { Logo } from "@/components/foodup/Logo";
+import { Mascot } from "@/components/foodup/Mascot";
 import { PillButton } from "@/components/foodup/PillButton";
+import { ThemeToggle } from "@/components/foodup/ThemeToggle";
 import { Checkbox } from "@/components/ui/checkbox";
 import { supabase } from "@/integrations/supabase/client";
 import { lovable } from "@/integrations/lovable";
@@ -128,18 +129,15 @@ function AuthPage() {
   return (
     <div className="min-h-screen bg-muted/60">
       <div className="mx-auto min-h-screen w-full max-w-md bg-card">
-        <header className="relative h-60 overflow-hidden rounded-b-[36px] bg-gradient-header px-6 pt-10">
-          <Logo light className="text-3xl" />
-          <p className="mt-2 max-w-[150px] text-sm leading-snug text-primary-foreground/85">
-            Comida quente, direto na sua porta.
+        <header className="relative h-60 overflow-hidden rounded-b-[32px] bg-gradient-header px-6 pt-10">
+          <div className="flex items-start justify-between">
+            <Logo theme="dark" className="h-9" />
+            <ThemeToggle />
+          </div>
+          <p className="mt-3 max-w-[150px] text-sm font-medium leading-snug text-brand-white/80">
+            Delivery do seu jeito.
           </p>
-          <img
-            src={courierImg}
-            alt=""
-            width={1024}
-            height={1024}
-            className="absolute -bottom-3 -right-4 w-56 animate-float"
-          />
+          <Mascot priority alt="" className="absolute -bottom-2 -right-6 w-64 animate-float" />
         </header>
 
         {sentTo ? (
