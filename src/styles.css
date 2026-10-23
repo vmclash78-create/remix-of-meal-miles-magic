@@ -208,6 +208,33 @@
   animation: ride-in 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
+/* Linhas de velocidade da splash: deslizam para trás do mascote em loop. */
+@utility animate-speed-line {
+  animation: speed-line 1.1s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+@keyframes speed-line {
+  0% {
+    opacity: 0;
+    transform: translateX(40%) scaleX(0.4);
+  }
+  30% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(-120%) scaleX(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-speed-line,
+  .animate-ride-in,
+  .animate-float {
+    animation: none;
+  }
+}
+
 @keyframes page-in {
   from {
     opacity: 0;
