@@ -131,9 +131,9 @@ function CheckoutPage() {
         {header}
         <EmptyState
           className="pt-20"
-          icon={<ShoppingBag className="h-9 w-9" />}
+          mascot
           title="Sua cesta está vazia"
-          message="Explore os restaurantes e adicione seus pratos favoritos."
+          message="Nosso entregador está esperando! Escolha um restaurante e adicione seus pratos favoritos."
           action={
             <Link to="/inicio">
               <PillButton size="md">Explorar restaurantes</PillButton>

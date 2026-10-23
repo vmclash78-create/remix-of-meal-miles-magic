@@ -1,7 +1,6 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
-import { ChevronRight, LogOut, MapPin, Receipt, Trash2 } from "lucide-react";
-import { format } from "date-fns";
+import { ChevronRight, Heart, LogOut, MapPin, Receipt, ShoppingBag, TicketPercent, Trash2 } from "lucide-react";
 import { toast } from "sonner";
 import { addressIcon } from "@/components/foodup/AddressSheet";
 import { MobileShell } from "@/components/foodup/MobileShell";
@@ -11,9 +10,7 @@ import { ThemeToggle } from "@/components/foodup/ThemeToggle";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useAuthUser } from "@/hooks/use-auth-user";
 import { supabase } from "@/integrations/supabase/client";
-import { formatBRL } from "@/lib/pricing";
 import { addressesQuery, ordersQuery, profileQuery } from "@/lib/queries";
-import { statusLabel, type OrderStatus } from "@/lib/simulation";
 import { useLocationStore } from "@/stores/cart";
 
 export const Route = createFileRoute("/_authenticated/perfil")({
@@ -29,6 +26,13 @@ export const Route = createFileRoute("/_authenticated/perfil")({
   }),
   component: ProfilePage,
 });
+
+const SHORTCUTS = [
+  { to: "/pedidos", label: "Meus pedidos", hint: "Acompanhe e repita pedidos", icon: Receipt },
+  { to: "/salvos", label: "Salvos", hint: "Seus restaurantes favoritos", icon: Heart },
+  { to: "/ofertas", label: "Ofertas e cupons", hint: "Resgate descontos", icon: TicketPercent },
+  { to: "/cesta", label: "Minha cesta", hint: "Itens prontos para o checkout", icon: ShoppingBag },
+] as const;
 
 function ProfilePage() {
   const user = useAuthUser();

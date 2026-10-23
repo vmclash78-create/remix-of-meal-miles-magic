@@ -1,6 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
-import { Heart } from "lucide-react";
 import { MobileShell } from "@/components/foodup/MobileShell";
 import { PillButton } from "@/components/foodup/PillButton";
 import { RestaurantCard, RestaurantCardSkeleton } from "@/components/foodup/RestaurantCard";
@@ -38,9 +37,9 @@ function SavedPage() {
           <ErrorState message="Não foi possível carregar seus salvos." onRetry={() => refetch()} />
         ) : !data?.length ? (
           <EmptyState
-            icon={<Heart className="h-8 w-8" />}
+            mascot
             title="Nada salvo ainda"
-            message="Toque no coração de um restaurante para guardá-lo aqui."
+            message="Toque no coração de um restaurante e ele fica guardadinho aqui pra você."
             action={<Link to="/inicio"><PillButton size="md">Explorar</PillButton></Link>}
           />
         ) : (
