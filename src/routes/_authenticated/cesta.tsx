@@ -376,7 +376,7 @@ function Row({ label, value, bold, highlight }: { label: string; value: string; 
   return (
     <div className="flex items-center justify-between">
       <span className={cn(bold ? "text-base font-bold" : "text-muted-foreground")}>{label}</span>
-      <span className={cn(bold ? "text-base font-extrabold" : "font-semibold", highlight && "text-primary-deep")}>{value}</span>
+      <span className={cn(bold ? "text-base font-extrabold" : "font-semibold", highlight && "text-success")}>{value}</span>
     </div>
   );
 }

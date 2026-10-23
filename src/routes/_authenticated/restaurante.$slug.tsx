@@ -145,7 +145,7 @@ function RestaurantPage() {
               <span className="text-muted-foreground">({(restaurant.rating_count / 1000).toFixed(1)} mil)</span>
             </p>
             <p className="mt-1 flex flex-wrap items-center gap-x-2 text-xs font-semibold text-primary-deep">
-              <span className="inline-flex items-center gap-1"><Truck className="h-3.5 w-3.5" /> {fee === 0 ? "Entrega grátis" : `Taxa ${formatBRL(fee)}`}</span>
+              <span className={cn("inline-flex items-center gap-1", fee === 0 && "text-success")}><Truck className="h-3.5 w-3.5" /> {fee === 0 ? "Entrega grátis" : `Taxa ${formatBRL(fee)}`}</span>
               <span className="inline-flex items-center gap-1 text-muted-foreground"><Clock className="h-3.5 w-3.5" /> {restaurant.eta_min} min</span>
             </p>
           </div>

@@ -160,8 +160,8 @@ function TrackingPage() {
           <OrderStepper status={st} mode={mode} progress={order.route_progress} />
 
           {st === "delivered" && (
-            <div className="rounded-2xl bg-primary-soft p-4 text-center animate-fade-up">
-              <p className="font-bold text-primary-deep">{mode === "pickup" ? "Pedido retirado!" : "Pedido entregue!"} Bom apetite 🎉</p>
+            <div className="rounded-2xl bg-success-soft p-4 text-center animate-fade-up">
+              <p className="font-bold text-success">{mode === "pickup" ? "Pedido retirado!" : "Pedido entregue!"} Bom apetite 🎉</p>
               <Link to="/inicio"><PillButton size="md" className="mt-3">Voltar ao início</PillButton></Link>
             </div>
           )}

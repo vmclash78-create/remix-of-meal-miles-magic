@@ -1,6 +1,5 @@
 import { useEffect, useRef } from "react";
 import { Crosshair } from "lucide-react";
-import courierImg from "@/assets/courier-scooter.png";
 import { splitRoute, type LatLng } from "@/lib/geo";
 import { cn } from "@/lib/utils";
 import { L, addTiles, courierIcon, pinIcon, restaurantIcon } from "./leaflet-helpers";
@@ -61,7 +60,7 @@ export default function TrackingMapImpl({
     L.marker(restaurant, { icon: restaurantIcon(restaurantEmoji) }).addTo(map);
     L.marker(destination, { icon: pinIcon() }).addTo(map);
     if (showCourier) {
-      courierRef.current = L.marker(restaurant, { icon: courierIcon(courierImg), zIndexOffset: 1000 }).addTo(map);
+      courierRef.current = L.marker(restaurant, { icon: courierIcon("/brand/mascot-courier-sm.webp"), zIndexOffset: 1000 }).addTo(map);
     }
     draw(shownProgress.current);
     fit();
