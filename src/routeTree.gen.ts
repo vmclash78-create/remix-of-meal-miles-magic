@@ -13,10 +13,12 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as ResetPasswordRouteImport } from './routes/reset-password'
+import { Route as AuthenticatedBuscaRouteImport } from './routes/_authenticated/busca'
 import { Route as AuthenticatedCestaRouteImport } from './routes/_authenticated/cesta'
 import { Route as AuthenticatedConfirmarLocalRouteImport } from './routes/_authenticated/confirmar-local'
 import { Route as AuthenticatedInicioRouteImport } from './routes/_authenticated/inicio'
 import { Route as AuthenticatedOfertasRouteImport } from './routes/_authenticated/ofertas'
+import { Route as AuthenticatedPedidosRouteImport } from './routes/_authenticated/pedidos'
 import { Route as AuthenticatedPerfilRouteImport } from './routes/_authenticated/perfil'
 import { Route as AuthenticatedSalvosRouteImport } from './routes/_authenticated/salvos'
 import { Route as AuthenticatedPedidoIdRouteImport } from './routes/_authenticated/pedido.$id'
@@ -41,6 +43,11 @@ const ResetPasswordRoute = ResetPasswordRouteImport.update({
   path: '/reset-password',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthenticatedBuscaRoute = AuthenticatedBuscaRouteImport.update({
+  id: '/busca',
+  path: '/busca',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 const AuthenticatedCestaRoute = AuthenticatedCestaRouteImport.update({
   id: '/cesta',
   path: '/cesta',
@@ -60,6 +67,11 @@ const AuthenticatedInicioRoute = AuthenticatedInicioRouteImport.update({
 const AuthenticatedOfertasRoute = AuthenticatedOfertasRouteImport.update({
   id: '/ofertas',
   path: '/ofertas',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedPedidosRoute = AuthenticatedPedidosRouteImport.update({
+  id: '/pedidos',
+  path: '/pedidos',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
 const AuthenticatedPerfilRoute = AuthenticatedPerfilRouteImport.update({
@@ -88,10 +100,12 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
   '/reset-password': typeof ResetPasswordRoute
+  '/busca': typeof AuthenticatedBuscaRoute
   '/cesta': typeof AuthenticatedCestaRoute
   '/confirmar-local': typeof AuthenticatedConfirmarLocalRoute
   '/inicio': typeof AuthenticatedInicioRoute
   '/ofertas': typeof AuthenticatedOfertasRoute
+  '/pedidos': typeof AuthenticatedPedidosRoute
   '/perfil': typeof AuthenticatedPerfilRoute
   '/salvos': typeof AuthenticatedSalvosRoute
   '/pedido/$id': typeof AuthenticatedPedidoIdRoute
@@ -101,10 +115,12 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
   '/reset-password': typeof ResetPasswordRoute
+  '/busca': typeof AuthenticatedBuscaRoute
   '/cesta': typeof AuthenticatedCestaRoute
   '/confirmar-local': typeof AuthenticatedConfirmarLocalRoute
   '/inicio': typeof AuthenticatedInicioRoute
   '/ofertas': typeof AuthenticatedOfertasRoute
+  '/pedidos': typeof AuthenticatedPedidosRoute
   '/perfil': typeof AuthenticatedPerfilRoute
   '/salvos': typeof AuthenticatedSalvosRoute
   '/pedido/$id': typeof AuthenticatedPedidoIdRoute
@@ -116,10 +132,12 @@ export interface FileRoutesById {
   '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
   '/auth': typeof AuthRoute
   '/reset-password': typeof ResetPasswordRoute
+  '/_authenticated/busca': typeof AuthenticatedBuscaRoute
   '/_authenticated/cesta': typeof AuthenticatedCestaRoute
   '/_authenticated/confirmar-local': typeof AuthenticatedConfirmarLocalRoute
   '/_authenticated/inicio': typeof AuthenticatedInicioRoute
   '/_authenticated/ofertas': typeof AuthenticatedOfertasRoute
+  '/_authenticated/pedidos': typeof AuthenticatedPedidosRoute
   '/_authenticated/perfil': typeof AuthenticatedPerfilRoute
   '/_authenticated/salvos': typeof AuthenticatedSalvosRoute
   '/_authenticated/pedido/$id': typeof AuthenticatedPedidoIdRoute
@@ -131,10 +149,12 @@ export interface FileRouteTypes {
     | '/'
     | '/auth'
     | '/reset-password'
+    | '/busca'
     | '/cesta'
     | '/confirmar-local'
     | '/inicio'
     | '/ofertas'
+    | '/pedidos'
     | '/perfil'
     | '/salvos'
     | '/pedido/$id'
@@ -144,10 +164,12 @@ export interface FileRouteTypes {
     | '/'
     | '/auth'
     | '/reset-password'
+    | '/busca'
     | '/cesta'
     | '/confirmar-local'
     | '/inicio'
     | '/ofertas'
+    | '/pedidos'
     | '/perfil'
     | '/salvos'
     | '/pedido/$id'
@@ -158,10 +180,12 @@ export interface FileRouteTypes {
     | '/_authenticated'
     | '/auth'
     | '/reset-password'
+    | '/_authenticated/busca'
     | '/_authenticated/cesta'
     | '/_authenticated/confirmar-local'
     | '/_authenticated/inicio'
     | '/_authenticated/ofertas'
+    | '/_authenticated/pedidos'
     | '/_authenticated/perfil'
     | '/_authenticated/salvos'
     | '/_authenticated/pedido/$id'
@@ -205,6 +229,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ResetPasswordRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_authenticated/busca': {
+      id: '/_authenticated/busca'
+      path: '/busca'
+      fullPath: '/busca'
+      preLoaderRoute: typeof AuthenticatedBuscaRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/cesta': {
       id: '/_authenticated/cesta'
       path: '/cesta'
@@ -231,6 +262,13 @@ declare module '@tanstack/react-router' {
       path: '/ofertas'
       fullPath: '/ofertas'
       preLoaderRoute: typeof AuthenticatedOfertasRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/pedidos': {
+      id: '/_authenticated/pedidos'
+      path: '/pedidos'
+      fullPath: '/pedidos'
+      preLoaderRoute: typeof AuthenticatedPedidosRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/perfil': {
@@ -265,10 +303,12 @@ declare module '@tanstack/react-router' {
 }
 
 interface AuthenticatedRouteRouteChildren {
+  AuthenticatedBuscaRoute: typeof AuthenticatedBuscaRoute
   AuthenticatedCestaRoute: typeof AuthenticatedCestaRoute
   AuthenticatedConfirmarLocalRoute: typeof AuthenticatedConfirmarLocalRoute
   AuthenticatedInicioRoute: typeof AuthenticatedInicioRoute
   AuthenticatedOfertasRoute: typeof AuthenticatedOfertasRoute
+  AuthenticatedPedidosRoute: typeof AuthenticatedPedidosRoute
   AuthenticatedPerfilRoute: typeof AuthenticatedPerfilRoute
   AuthenticatedSalvosRoute: typeof AuthenticatedSalvosRoute
   AuthenticatedPedidoIdRoute: typeof AuthenticatedPedidoIdRoute
@@ -276,10 +316,12 @@ interface AuthenticatedRouteRouteChildren {
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
+  AuthenticatedBuscaRoute: AuthenticatedBuscaRoute,
   AuthenticatedCestaRoute: AuthenticatedCestaRoute,
   AuthenticatedConfirmarLocalRoute: AuthenticatedConfirmarLocalRoute,
   AuthenticatedInicioRoute: AuthenticatedInicioRoute,
   AuthenticatedOfertasRoute: AuthenticatedOfertasRoute,
+  AuthenticatedPedidosRoute: AuthenticatedPedidosRoute,
   AuthenticatedPerfilRoute: AuthenticatedPerfilRoute,
   AuthenticatedSalvosRoute: AuthenticatedSalvosRoute,
   AuthenticatedPedidoIdRoute: AuthenticatedPedidoIdRoute,

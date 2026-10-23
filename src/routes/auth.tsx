@@ -129,15 +129,13 @@ function AuthPage() {
   return (
     <div className="min-h-screen bg-muted/60">
       <div className="mx-auto min-h-screen w-full max-w-md bg-card">
-        <header className="relative h-60 overflow-hidden rounded-b-[32px] bg-gradient-header px-6 pt-10">
-          <div className="flex items-start justify-between">
-            <Logo theme="dark" className="h-9" />
+        <header className="relative overflow-hidden rounded-b-[32px] bg-gradient-header px-6 pb-6 pt-[calc(env(safe-area-inset-top)+20px)]">
+          <div className="flex items-center justify-between">
+            <Logo theme="dark" className="h-8" />
             <ThemeToggle />
           </div>
-          <p className="mt-3 max-w-[150px] text-sm font-medium leading-snug text-brand-white/80">
-            Delivery do seu jeito.
-          </p>
-          <Mascot priority alt="" className="absolute -bottom-2 -right-6 w-64 animate-float" />
+          <Mascot priority glow alt="" className="mx-auto mt-4 w-56 animate-float" />
+          <p className="mt-2 text-center text-sm font-medium text-brand-white/80">Delivery do seu jeito</p>
         </header>
 
         {sentTo ? (

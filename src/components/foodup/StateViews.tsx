@@ -2,6 +2,7 @@ import type { ReactNode } from "react";
 import { AlertCircle, RefreshCw } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { Mascot } from "./Mascot";
 
 export function ErrorState({
   title = "Algo deu errado",
@@ -32,14 +33,20 @@ export function ErrorState({
   );
 }
 
+/**
+ * Estado vazio. Com `mascot`, mostra o entregador FoodUp (cesta vazia, sem pedidos, sem favoritos);
+ * caso contrário, um ícone no círculo laranja.
+ */
 export function EmptyState({
   icon,
+  mascot = false,
   title,
   message,
   action,
   className,
 }: {
-  icon: ReactNode;
+  icon?: ReactNode;
+  mascot?: boolean;
   title: string;
   message?: string;
   action?: ReactNode;
@@ -47,9 +54,13 @@ export function EmptyState({
 }) {
   return (
     <div className={cn("flex flex-col items-center justify-center gap-4 px-6 py-14 text-center", className)}>
-      <div className="flex h-20 w-20 items-center justify-center rounded-full bg-primary-soft text-primary-deep">
-        {icon}
-      </div>
+      {mascot ? (
+        <Mascot glow alt="" className="w-52 animate-float" />
+      ) : (
+        <div className="flex h-20 w-20 items-center justify-center rounded-full bg-primary-soft text-primary-deep">
+          {icon}
+        </div>
+      )}
       <div>
         <p className="text-base font-bold text-foreground">{title}</p>
         {message && <p className="mx-auto mt-1 max-w-xs text-sm text-muted-foreground">{message}</p>}
