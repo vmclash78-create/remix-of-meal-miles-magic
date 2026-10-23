@@ -133,7 +133,7 @@ function HomePage() {
         {!search && (
           <section className="px-5">
             <div className="relative overflow-hidden rounded-[24px] bg-gradient-header p-5 text-brand-white shadow-soft">
-              <div className="relative z-10 max-w-[58%]">
+              <div className="relative z-10 max-w-[55%]">
                 <p className="text-[11px] font-semibold uppercase tracking-wider text-highlight">Só hoje</p>
                 <h2 className="mt-1 text-2xl font-extrabold leading-tight">Entrega rápida e grátis!</h2>
                 <p className="mt-1 text-xs opacity-90">Use o cupom FRETEGRATIS em qualquer pedido.</p>
@@ -145,7 +145,7 @@ function HomePage() {
                   {couponCode === "FRETEGRATIS" ? "Cupom ativo ✓" : "Pedir agora"}
                 </button>
               </div>
-              <Mascot alt="" className="absolute -bottom-3 -right-8 w-52 animate-float" />
+              <Mascot alt="" className="absolute -bottom-2 -right-10 w-48 animate-float" />
             </div>
           </section>
         )}
