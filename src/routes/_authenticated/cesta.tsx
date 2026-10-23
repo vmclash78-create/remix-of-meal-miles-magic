@@ -25,9 +25,9 @@ import { cn } from "@/lib/utils";
 export const Route = createFileRoute("/_authenticated/cesta")({
   head: () => ({
     meta: [
-      { title: "Sua cesta | Foodie" },
+      { title: "Sua cesta | FoodUp" },
       { name: "description", content: "Revise seus itens, aplique cupons e finalize o pedido." },
-      { property: "og:title", content: "Sua cesta | Foodie" },
+      { property: "og:title", content: "Sua cesta | FoodUp" },
       { property: "og:description", content: "Revise seus itens, aplique cupons e finalize o pedido." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },

@@ -220,17 +220,17 @@
 }
 
 /* Leaflet map styling */
-.foodie-route {
+.foodup-route {
   stroke: var(--primary-deep);
 }
-.foodie-route-bg {
+.foodup-route-bg {
   stroke: var(--primary);
 }
 .leaflet-container {
   font-family: var(--font-sans);
   background: var(--muted);
 }
-.foodie-marker {
+.foodup-marker {
   background: transparent;
   border: none;
 }

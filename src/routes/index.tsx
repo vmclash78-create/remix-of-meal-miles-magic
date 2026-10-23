@@ -38,7 +38,7 @@ function Splash() {
       type="button"
       onClick={go}
       className="flex min-h-screen w-full flex-col items-center justify-center bg-background px-8 text-center"
-      aria-label="Entrar no Foodie"
+      aria-label="Entrar no FoodUp"
     >
       <div className="relative">
         <div className="absolute inset-x-6 bottom-2 top-10 rounded-full bg-primary-soft" />

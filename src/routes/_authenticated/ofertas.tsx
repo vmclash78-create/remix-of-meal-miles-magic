@@ -12,10 +12,10 @@ import { useCart } from "@/stores/cart";
 export const Route = createFileRoute("/_authenticated/ofertas")({
   head: () => ({
     meta: [
-      { title: "Ofertas | Foodie" },
-      { name: "description", content: "Cupons de desconto e frete grátis no Foodie." },
-      { property: "og:title", content: "Ofertas | Foodie" },
-      { property: "og:description", content: "Cupons de desconto e frete grátis no Foodie." },
+      { title: "Ofertas | FoodUp" },
+      { name: "description", content: "Cupons de desconto e frete grátis no FoodUp." },
+      { property: "og:title", content: "Ofertas | FoodUp" },
+      { property: "og:description", content: "Cupons de desconto e frete grátis no FoodUp." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
     ],

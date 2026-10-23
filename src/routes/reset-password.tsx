@@ -9,10 +9,10 @@ import { supabase } from "@/integrations/supabase/client";
 export const Route = createFileRoute("/reset-password")({
   head: () => ({
     meta: [
-      { title: "Nova senha | Foodie" },
-      { name: "description", content: "Crie uma nova senha para sua conta Foodie." },
-      { property: "og:title", content: "Nova senha | Foodie" },
-      { property: "og:description", content: "Crie uma nova senha para sua conta Foodie." },
+      { title: "Nova senha | FoodUp" },
+      { name: "description", content: "Crie uma nova senha para sua conta FoodUp." },
+      { property: "og:title", content: "Nova senha | FoodUp" },
+      { property: "og:description", content: "Crie uma nova senha para sua conta FoodUp." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
     ],

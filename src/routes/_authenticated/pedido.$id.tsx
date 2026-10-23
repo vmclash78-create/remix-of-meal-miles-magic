@@ -20,9 +20,9 @@ import type { Order, OrderStatusEvent } from "@/lib/types";
 export const Route = createFileRoute("/_authenticated/pedido/$id")({
   head: () => ({
     meta: [
-      { title: "Acompanhar pedido | Foodie" },
+      { title: "Acompanhar pedido | FoodUp" },
       { name: "description", content: "Acompanhe seu pedido e o entregador em tempo real." },
-      { property: "og:title", content: "Acompanhar pedido | Foodie" },
+      { property: "og:title", content: "Acompanhar pedido | FoodUp" },
       { property: "og:description", content: "Acompanhe seu pedido e o entregador em tempo real." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },

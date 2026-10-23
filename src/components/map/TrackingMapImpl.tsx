@@ -50,9 +50,9 @@ export default function TrackingMapImpl({
     const map = L.map(el.current, { zoomControl: false, attributionControl: true });
     mapRef.current = map;
     addTiles(map);
-    remainingRef.current = L.polyline([], { className: "foodie-route", weight: 6, opacity: 0.95, lineCap: "round" }).addTo(map);
+    remainingRef.current = L.polyline([], { className: "foodup-route", weight: 6, opacity: 0.95, lineCap: "round" }).addTo(map);
     traveledRef.current = L.polyline([], {
-      className: "foodie-route-bg",
+      className: "foodup-route-bg",
       weight: 6,
       opacity: 0.35,
       dashArray: "2 10",

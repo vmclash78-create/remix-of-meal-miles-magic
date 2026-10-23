@@ -22,10 +22,10 @@ import { cn } from "@/lib/utils";
 export const Route = createFileRoute("/_authenticated/restaurante/$slug")({
   head: () => ({
     meta: [
-      { title: "Restaurante | Foodie" },
-      { name: "description", content: "Cardápio, cupons e entrega rápida pelo Foodie." },
-      { property: "og:title", content: "Restaurante | Foodie" },
-      { property: "og:description", content: "Cardápio, cupons e entrega rápida pelo Foodie." },
+      { title: "Restaurante | FoodUp" },
+      { name: "description", content: "Cardápio, cupons e entrega rápida pelo FoodUp." },
+      { property: "og:title", content: "Restaurante | FoodUp" },
+      { property: "og:description", content: "Cardápio, cupons e entrega rápida pelo FoodUp." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
     ],

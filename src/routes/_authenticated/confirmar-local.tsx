@@ -18,9 +18,9 @@ export const Route = createFileRoute("/_authenticated/confirmar-local")({
   }),
   head: () => ({
     meta: [
-      { title: "Confirmar local | Foodie" },
+      { title: "Confirmar local | FoodUp" },
       { name: "description", content: "Escolha no mapa onde você quer receber seu pedido." },
-      { property: "og:title", content: "Confirmar local | Foodie" },
+      { property: "og:title", content: "Confirmar local | FoodUp" },
       { property: "og:description", content: "Escolha no mapa onde você quer receber seu pedido." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },

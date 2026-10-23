@@ -18,10 +18,10 @@ export const Route = createFileRoute("/auth")({
   }),
   head: () => ({
     meta: [
-      { title: "Entrar | Foodie" },
-      { name: "description", content: "Entre ou crie sua conta no Foodie para pedir comida com entrega rápida." },
-      { property: "og:title", content: "Entrar | Foodie" },
-      { property: "og:description", content: "Entre ou crie sua conta no Foodie para pedir comida com entrega rápida." },
+      { title: "Entrar | FoodUp" },
+      { name: "description", content: "Entre ou crie sua conta no FoodUp para pedir comida com entrega rápida." },
+      { property: "og:title", content: "Entrar | FoodUp" },
+      { property: "og:description", content: "Entre ou crie sua conta no FoodUp para pedir comida com entrega rápida." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
     ],

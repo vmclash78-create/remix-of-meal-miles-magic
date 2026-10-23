@@ -22,9 +22,9 @@ import { cn } from "@/lib/utils";
 export const Route = createFileRoute("/_authenticated/inicio")({
   head: () => ({
     meta: [
-      { title: "Início | Foodie" },
+      { title: "Início | FoodUp" },
       { name: "description", content: "Restaurantes perto de você, ofertas e seus pedidos favoritos." },
-      { property: "og:title", content: "Início | Foodie" },
+      { property: "og:title", content: "Início | FoodUp" },
       { property: "og:description", content: "Restaurantes perto de você, ofertas e seus pedidos favoritos." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },

@@ -11,10 +11,10 @@ import { favoritesQuery } from "@/lib/queries";
 export const Route = createFileRoute("/_authenticated/salvos")({
   head: () => ({
     meta: [
-      { title: "Salvos | Foodie" },
-      { name: "description", content: "Seus restaurantes favoritos no Foodie." },
-      { property: "og:title", content: "Salvos | Foodie" },
-      { property: "og:description", content: "Seus restaurantes favoritos no Foodie." },
+      { title: "Salvos | FoodUp" },
+      { name: "description", content: "Seus restaurantes favoritos no FoodUp." },
+      { property: "og:title", content: "Salvos | FoodUp" },
+      { property: "og:description", content: "Seus restaurantes favoritos no FoodUp." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
     ],

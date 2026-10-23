@@ -18,10 +18,10 @@ import { useLocationStore } from "@/stores/cart";
 export const Route = createFileRoute("/_authenticated/perfil")({
   head: () => ({
     meta: [
-      { title: "Perfil | Foodie" },
-      { name: "description", content: "Seus pedidos, endereços e dados da conta Foodie." },
-      { property: "og:title", content: "Perfil | Foodie" },
-      { property: "og:description", content: "Seus pedidos, endereços e dados da conta Foodie." },
+      { title: "Perfil | FoodUp" },
+      { name: "description", content: "Seus pedidos, endereços e dados da conta FoodUp." },
+      { property: "og:title", content: "Perfil | FoodUp" },
+      { property: "og:description", content: "Seus pedidos, endereços e dados da conta FoodUp." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
     ],
