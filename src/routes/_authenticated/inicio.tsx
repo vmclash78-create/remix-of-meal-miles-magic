@@ -1,12 +1,13 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
 import { useMemo, useState } from "react";
-import { ChevronDown, MapPin, RotateCcw, Search, Store, X } from "lucide-react";
+import { ChevronDown, MapPin, RotateCcw, Search, Store } from "lucide-react";
 import { formatDistanceToNow } from "date-fns";
 import { ptBR } from "date-fns/locale";
 import { toast } from "sonner";
 import { AddressSheet } from "@/components/foodup/AddressSheet";
 import { CouponCard } from "@/components/foodup/CouponCard";
+import { Logo } from "@/components/foodup/Logo";
 import { Mascot } from "@/components/foodup/Mascot";
 import { MobileShell } from "@/components/foodup/MobileShell";
 import { RestaurantCard, RestaurantCardSkeleton } from "@/components/foodup/RestaurantCard";
@@ -36,7 +37,6 @@ export const Route = createFileRoute("/_authenticated/inicio")({
 function HomePage() {
   const user = useAuthUser();
   const [category, setCategory] = useState("todos");
-  const [search, setSearch] = useState("");
   const [addrOpen, setAddrOpen] = useState(false);
   const { address, isLoading: addrLoading } = useSelectedAddress(user.id);
   const profile = useQuery(profileQuery(user.id));
@@ -48,13 +48,8 @@ function HomePage() {
   const setCoupon = useCart((s) => s.setCoupon);
 
   const filtered = useMemo(() => {
-    const q = search.trim().toLowerCase();
-    return (restaurants.data ?? []).filter(
-      (r) =>
-        (category === "todos" || r.category_slug === category) &&
-        (!q || `${r.name} ${r.branch ?? ""} ${r.category_slug}`.toLowerCase().includes(q)),
-    );
-  }, [restaurants.data, category, search]);
+    return (restaurants.data ?? []).filter((r) => category === "todos" || r.category_slug === category);
+  }, [restaurants.data, category]);
 
   const orderAgain = useMemo(() => {
     const seen = new Set<string>();
@@ -167,7 +162,7 @@ function HomePage() {
         </section>
 
         {/* Order again */}
-        {!search && (
+        {(
           <section>
             <SectionTitle title="Peça de novo" />
             <div className="no-scrollbar mt-3 flex gap-3 overflow-x-auto px-5 pb-1">
@@ -203,7 +198,7 @@ function HomePage() {
         )}
 
         {/* Deals */}
-        {!search && (
+        {(
           <section>
             <SectionTitle title="Ofertas para você" link={{ to: "/ofertas", label: "Ver todas" }} />
             <div className="no-scrollbar mt-3 flex gap-3 overflow-x-auto px-5 pb-1">
@@ -227,7 +222,7 @@ function HomePage() {
         {/* Restaurants */}
         <section className="px-5 pb-4">
           <h2 className="text-base font-bold text-foreground">
-            {search ? `Resultados para “${search}”` : "Restaurantes perto de você"}
+            Restaurantes perto de você
           </h2>
           {restaurants.isLoading ? (
             <div className="mt-3 grid grid-cols-2 gap-3">
@@ -239,7 +234,7 @@ function HomePage() {
             <EmptyState
               icon={<Store className="h-8 w-8" />}
               title="Nenhum restaurante encontrado"
-              message="Tente outra categoria ou termo de busca."
+              message="Tente outra categoria."
             />
           ) : (
             <div className="mt-3 grid grid-cols-2 gap-3">
