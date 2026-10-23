@@ -3,7 +3,7 @@ import { useQueryClient } from "@tanstack/react-query";
 import { useEffect, useRef, useState } from "react";
 import { ArrowLeft, Loader2, LocateFixed, MapPin, Search, X } from "lucide-react";
 import { toast } from "sonner";
-import { PillButton } from "@/components/foodie/PillButton";
+import { PillButton } from "@/components/foodup/PillButton";
 import { LocationPicker } from "@/components/map";
 import { useAuthUser } from "@/hooks/use-auth-user";
 import { useSelectedAddress } from "@/hooks/use-selected-address";

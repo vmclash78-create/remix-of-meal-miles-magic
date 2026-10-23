@@ -53,7 +53,7 @@ export function CouponCard({ coupon, restaurantName, applied, onApply, variant =
             disabled={applied}
             className={cn(
               "inline-flex h-8 items-center gap-1 rounded-full px-3.5 text-xs font-bold transition active:scale-95",
-              dark ? "bg-card text-primary-deep" : "bg-gradient-primary text-primary-foreground",
+              dark ? "bg-card text-primary-deep" : "bg-primary text-primary-foreground",
               applied && "opacity-80",
             )}
           >

@@ -6,11 +6,11 @@ import { formatDistanceToNow } from "date-fns";
 import { ptBR } from "date-fns/locale";
 import { toast } from "sonner";
 import courierImg from "@/assets/courier-scooter.png";
-import { AddressSheet } from "@/components/foodie/AddressSheet";
-import { CouponCard } from "@/components/foodie/CouponCard";
-import { MobileShell } from "@/components/foodie/MobileShell";
-import { RestaurantCard, RestaurantCardSkeleton } from "@/components/foodie/RestaurantCard";
-import { EmptyState, ErrorState } from "@/components/foodie/StateViews";
+import { AddressSheet } from "@/components/foodup/AddressSheet";
+import { CouponCard } from "@/components/foodup/CouponCard";
+import { MobileShell } from "@/components/foodup/MobileShell";
+import { RestaurantCard, RestaurantCardSkeleton } from "@/components/foodup/RestaurantCard";
+import { EmptyState, ErrorState } from "@/components/foodup/StateViews";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useAuthUser } from "@/hooks/use-auth-user";
 import { useSelectedAddress } from "@/hooks/use-selected-address";
@@ -132,7 +132,7 @@ function HomePage() {
         {/* Banner */}
         {!search && (
           <section className="px-5">
-            <div className="relative overflow-hidden rounded-[24px] bg-gradient-primary p-5 text-primary-foreground shadow-soft">
+            <div className="relative overflow-hidden rounded-[24px] bg-primary p-5 text-primary-foreground shadow-soft">
               <div className="relative z-10 max-w-[58%]">
                 <p className="text-[11px] font-semibold uppercase tracking-wider opacity-85">Só hoje</p>
                 <h2 className="mt-1 text-2xl font-extrabold leading-tight">Entrega rápida e grátis!</h2>
@@ -166,7 +166,7 @@ function HomePage() {
                       aria-pressed={active}
                       className={cn(
                         "flex w-16 shrink-0 flex-col items-center gap-1 rounded-2xl py-2.5 text-[11px] font-semibold transition-all",
-                        active ? "bg-gradient-primary text-primary-foreground shadow-soft" : "bg-card text-foreground",
+                        active ? "bg-primary text-primary-foreground shadow-soft" : "bg-card text-foreground",
                       )}
                     >
                       <span className="text-2xl">{c.emoji}</span>

@@ -1,7 +1,7 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useEffect } from "react";
 import courierImg from "@/assets/courier-scooter.png";
-import { Logo } from "@/components/foodie/Logo";
+import { Logo } from "@/components/foodup/Logo";
 import { supabase } from "@/integrations/supabase/client";
 
 export const Route = createFileRoute("/")({

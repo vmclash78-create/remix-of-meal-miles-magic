@@ -19,7 +19,7 @@ export const PillButton = forwardRef<HTMLButtonElement, PillButtonProps>(
         size === "lg" && "h-13 px-6 text-[15px]",
         size === "md" && "h-11 px-5 text-sm",
         size === "sm" && "h-8 px-3.5 text-xs",
-        variant === "primary" && "bg-gradient-primary text-primary-foreground shadow-soft",
+        variant === "primary" && "bg-primary text-primary-foreground shadow-soft",
         variant === "soft" && "bg-primary-soft text-primary-deep",
         variant === "outline" && "border border-border bg-card text-foreground",
         variant === "dark" && "bg-primary-deep text-primary-foreground",

@@ -2,8 +2,8 @@ import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { KeyRound, Lock } from "lucide-react";
 import { toast } from "sonner";
-import { Logo } from "@/components/foodie/Logo";
-import { PillButton } from "@/components/foodie/PillButton";
+import { Logo } from "@/components/foodup/Logo";
+import { PillButton } from "@/components/foodup/PillButton";
 import { supabase } from "@/integrations/supabase/client";
 
 export const Route = createFileRoute("/reset-password")({

@@ -3,13 +3,13 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
 import { ArrowLeft, CalendarClock, Clock, Heart, ShoppingBag, Star, Truck, Users, UtensilsCrossed } from "lucide-react";
 import { toast } from "sonner";
-import { BottomSheet } from "@/components/foodie/BottomSheet";
-import { CouponCard } from "@/components/foodie/CouponCard";
-import { ItemDetailSheet } from "@/components/foodie/ItemDetailSheet";
-import { MenuItemCard, MenuItemCardSkeleton } from "@/components/foodie/MenuItemCard";
-import { MobileShell } from "@/components/foodie/MobileShell";
-import { PillButton } from "@/components/foodie/PillButton";
-import { EmptyState, ErrorState } from "@/components/foodie/StateViews";
+import { BottomSheet } from "@/components/foodup/BottomSheet";
+import { CouponCard } from "@/components/foodup/CouponCard";
+import { ItemDetailSheet } from "@/components/foodup/ItemDetailSheet";
+import { MenuItemCard, MenuItemCardSkeleton } from "@/components/foodup/MenuItemCard";
+import { MobileShell } from "@/components/foodup/MobileShell";
+import { PillButton } from "@/components/foodup/PillButton";
+import { EmptyState, ErrorState } from "@/components/foodup/StateViews";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useAuthUser } from "@/hooks/use-auth-user";
 import { supabase } from "@/integrations/supabase/client";
@@ -207,7 +207,7 @@ function RestaurantPage() {
 
       {cartCount > 0 && (
         <div className="fixed inset-x-0 bottom-0 z-30 mx-auto w-full max-w-md px-5 pb-[calc(env(safe-area-inset-bottom)+16px)] animate-fade-up">
-          <Link to="/cesta" className="flex h-14 items-center justify-between rounded-full bg-gradient-primary px-5 font-semibold text-primary-foreground shadow-soft">
+          <Link to="/cesta" className="flex h-14 items-center justify-between rounded-full bg-primary px-5 font-semibold text-primary-foreground shadow-soft">
             <span className="flex items-center gap-2 text-sm">
               <span className="flex h-7 min-w-7 items-center justify-center rounded-full bg-card px-1.5 text-xs font-bold text-primary-deep">{cartCount}</span>
               Ver cesta

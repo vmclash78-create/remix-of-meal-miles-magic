@@ -4,9 +4,9 @@ import { useServerFn } from "@tanstack/react-start";
 import { useEffect, useState } from "react";
 import { ArrowLeft, Bike, MessageCircle, PackageCheck, Phone, Star } from "lucide-react";
 import { format } from "date-fns";
-import { OrderStepper } from "@/components/foodie/OrderStepper";
-import { PillButton } from "@/components/foodie/PillButton";
-import { EmptyState, ErrorState } from "@/components/foodie/StateViews";
+import { OrderStepper } from "@/components/foodup/OrderStepper";
+import { PillButton } from "@/components/foodup/PillButton";
+import { EmptyState, ErrorState } from "@/components/foodup/StateViews";
 import { TrackingMap } from "@/components/map";
 import { Skeleton } from "@/components/ui/skeleton";
 import { supabase } from "@/integrations/supabase/client";
@@ -179,7 +179,7 @@ function TrackingPage() {
                 <a href={`sms:${courier.phone}`} aria-label="Mensagem" className="flex h-10 w-10 items-center justify-center rounded-full bg-primary-soft text-primary-deep">
                   <MessageCircle className="h-4.5 w-4.5" />
                 </a>
-                <a href={`tel:${courier.phone}`} aria-label="Ligar" className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-primary text-primary-foreground">
+                <a href={`tel:${courier.phone}`} aria-label="Ligar" className="flex h-10 w-10 items-center justify-center rounded-full bg-primary text-primary-foreground">
                   <Phone className="h-4.5 w-4.5" />
                 </a>
               </div>

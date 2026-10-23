@@ -27,7 +27,7 @@ export function OrderStepper({ status, mode, progress = 0 }: OrderStepperProps) 
           return (
             <div key={s} className="h-1.5 flex-1 overflow-hidden rounded-full bg-muted">
               <div
-                className="h-full rounded-full bg-gradient-primary transition-[width] duration-700 ease-out"
+                className="h-full rounded-full bg-primary transition-[width] duration-700 ease-out"
                 style={{ width: `${fill * 100}%` }}
               />
             </div>

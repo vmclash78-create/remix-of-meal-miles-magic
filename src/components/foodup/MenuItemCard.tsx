@@ -36,7 +36,7 @@ export function MenuItemCard({ item, onSelect }: MenuItemCardProps) {
         </div>
         <span
           aria-label={`Adicionar ${item.name}`}
-          className="flex h-8 w-8 items-center justify-center rounded-full bg-gradient-primary text-primary-foreground shadow-soft"
+          className="flex h-8 w-8 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-soft"
         >
           <Plus className="h-4 w-4" />
         </span>

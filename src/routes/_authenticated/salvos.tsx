@@ -1,10 +1,10 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
 import { Heart } from "lucide-react";
-import { MobileShell } from "@/components/foodie/MobileShell";
-import { PillButton } from "@/components/foodie/PillButton";
-import { RestaurantCard, RestaurantCardSkeleton } from "@/components/foodie/RestaurantCard";
-import { EmptyState, ErrorState } from "@/components/foodie/StateViews";
+import { MobileShell } from "@/components/foodup/MobileShell";
+import { PillButton } from "@/components/foodup/PillButton";
+import { RestaurantCard, RestaurantCardSkeleton } from "@/components/foodup/RestaurantCard";
+import { EmptyState, ErrorState } from "@/components/foodup/StateViews";
 import { useAuthUser } from "@/hooks/use-auth-user";
 import { favoritesQuery } from "@/lib/queries";
 

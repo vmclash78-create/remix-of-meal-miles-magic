@@ -145,7 +145,7 @@
   }
 }
 
-@utility bg-gradient-primary {
+@utility bg-primary {
   background-image: var(--gradient-primary);
 }
 
