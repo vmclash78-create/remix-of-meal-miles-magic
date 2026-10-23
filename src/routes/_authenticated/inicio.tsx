@@ -162,7 +162,6 @@ function HomePage() {
         </section>
 
         {/* Order again */}
-        {(
           <section>
             <SectionTitle title="Peça de novo" />
             <div className="no-scrollbar mt-3 flex gap-3 overflow-x-auto px-5 pb-1">
@@ -195,10 +194,8 @@ function HomePage() {
               )}
             </div>
           </section>
-        )}
 
         {/* Deals */}
-        {(
           <section>
             <SectionTitle title="Ofertas para você" link={{ to: "/ofertas", label: "Ver todas" }} />
             <div className="no-scrollbar mt-3 flex gap-3 overflow-x-auto px-5 pb-1">
@@ -217,7 +214,6 @@ function HomePage() {
             </div>
             {coupons.error && <ErrorState message="Falha ao carregar ofertas." onRetry={() => coupons.refetch()} />}
           </section>
-        )}
 
         {/* Restaurants */}
         <section className="px-5 pb-4">
