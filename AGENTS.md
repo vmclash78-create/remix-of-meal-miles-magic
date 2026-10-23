@@ -16,3 +16,5 @@
 - Orders, order items and status events are written only by server functions with the admin client after ownership checks; users have read-only access via RLS.
 - Leaflet maps are loaded lazily behind `ClientOnly` (`src/components/map/index.tsx`) because Leaflet touches `window` at import time.
 - Signed-in screens live under `src/routes/_authenticated/` (client-only gate); cart and selected address persist in zustand stores.
+- Bottom-nav tabs are defined once in `NAV_ITEMS` (`BottomNav.tsx`) and covered by `src/test/navigation.test.ts`; pages not in the nav (basket, saved, offers) stay reachable via the floating basket button and Profile shortcuts, so no screen becomes orphaned.
+- App icons in `public/` are rasterized from the symbol SVG (full-bleed, maskable-safe) rather than hand-edited, so favicon, manifest and touch icons stay identical.
