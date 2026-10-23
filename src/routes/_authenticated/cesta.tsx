@@ -2,7 +2,7 @@ import { createFileRoute, Link, useNavigate, useRouter } from "@tanstack/react-r
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
 import { useMemo, useState } from "react";
-import { ArrowLeft, Banknote, Bike, ChevronRight, CreditCard, MapPin, Plus, QrCode, ShoppingBag, Store, TicketPercent, X } from "lucide-react";
+import { ArrowLeft, Banknote, Bike, ChevronRight, CreditCard, MapPin, Plus, QrCode, Store, TicketPercent, X } from "lucide-react";
 import { toast } from "sonner";
 import { AddressSheet } from "@/components/foodup/AddressSheet";
 import { BottomSheet } from "@/components/foodup/BottomSheet";
