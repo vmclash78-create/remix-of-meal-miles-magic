@@ -73,32 +73,26 @@ function ProfilePage() {
 
       <div className="space-y-5 px-5 pt-5">
         <section>
-          <h2 className="mb-2 text-sm font-bold">Meus pedidos</h2>
-          {orders.isLoading ? (
-            <Skeleton className="h-16 w-full rounded-2xl" />
-          ) : orders.error ? (
-            <ErrorState message="Falha ao carregar pedidos." onRetry={() => orders.refetch()} />
-          ) : !orders.data?.length ? (
-            <p className="rounded-2xl bg-card p-4 text-sm text-muted-foreground shadow-soft">Você ainda não fez pedidos.</p>
-          ) : (
-            <ul className="space-y-2">
-              {orders.data.map((o) => (
-                <li key={o.id}>
-                  <Link to="/pedido/$id" params={{ id: o.id }} className="flex items-center gap-3 rounded-2xl bg-card p-3 shadow-soft">
-                    <span className="flex h-10 w-10 items-center justify-center rounded-full bg-primary-soft text-lg">{o.restaurants?.logo_emoji ?? <Receipt className="h-4 w-4" />}</span>
-                    <span className="min-w-0 flex-1">
-                      <span className="block truncate text-sm font-bold">{o.restaurants?.name} · #{o.short_code}</span>
-                      <span className="block text-xs text-muted-foreground">
-                        {format(new Date(o.created_at), "dd/MM HH:mm")} · {statusLabel(o.status as OrderStatus, o.mode === "pickup" ? "pickup" : "delivery")}
-                      </span>
+          <h2 className="mb-2 text-sm font-bold">Atalhos</h2>
+          <ul className="divide-y divide-border overflow-hidden rounded-2xl bg-card shadow-soft">
+            {SHORTCUTS.map(({ to, label, hint, icon: Icon }) => (
+              <li key={to}>
+                <Link to={to} className="flex items-center gap-3 p-3.5">
+                  <span className="flex h-10 w-10 items-center justify-center rounded-full bg-primary-soft text-primary-deep">
+                    <Icon className="h-5 w-5" />
+                  </span>
+                  <span className="min-w-0 flex-1">
+                    <span className="block text-sm font-bold">{label}</span>
+                    <span className="block truncate text-xs text-muted-foreground">
+                      {to === "/pedidos" && orders.data ? `${orders.data.length} ${orders.data.length === 1 ? "pedido" : "pedidos"}` : hint}
                     </span>
-                    <span className="text-sm font-bold">{formatBRL(Number(o.total))}</span>
-                    <ChevronRight className="h-4 w-4 text-muted-foreground" />
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          )}
+                  </span>
+                  <ChevronRight className="h-4 w-4 text-muted-foreground" />
+                </Link>
+              </li>
+            ))}
+          </ul>
+          {orders.error && <ErrorState message="Falha ao carregar pedidos." onRetry={() => orders.refetch()} />}
         </section>
 
         <section>
