@@ -150,3 +150,21 @@ export const profileQuery = (userId: string) =>
       return data;
     },
   });
+
+/** Pratos de qualquer restaurante cujo nome contém o termo buscado. */
+export const dishSearchQuery = (term: string) =>
+  queryOptions({
+    queryKey: ["dish-search", term],
+    queryFn: async () => {
+      const safe = term.replace(/[%_\\,()]/g, " ").trim();
+      if (safe.length < 2) return [];
+      const { data, error } = await supabase
+        .from("menu_items")
+        .select("id, name, price, image_url, restaurants(slug, name)")
+        .ilike("name", `%${safe}%`)
+        .limit(12);
+      fail("Falha ao buscar pratos", error);
+      return data ?? [];
+    },
+    staleTime: 1000 * 60,
+  });
