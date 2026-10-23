@@ -3,13 +3,13 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
 import { ArrowLeft, CalendarClock, Clock, Heart, ShoppingBag, Star, Truck, Users, UtensilsCrossed } from "lucide-react";
 import { toast } from "sonner";
-import { BottomSheet } from "@/components/foodie/BottomSheet";
-import { CouponCard } from "@/components/foodie/CouponCard";
-import { ItemDetailSheet } from "@/components/foodie/ItemDetailSheet";
-import { MenuItemCard, MenuItemCardSkeleton } from "@/components/foodie/MenuItemCard";
-import { MobileShell } from "@/components/foodie/MobileShell";
-import { PillButton } from "@/components/foodie/PillButton";
-import { EmptyState, ErrorState } from "@/components/foodie/StateViews";
+import { BottomSheet } from "@/components/foodup/BottomSheet";
+import { CouponCard } from "@/components/foodup/CouponCard";
+import { ItemDetailSheet } from "@/components/foodup/ItemDetailSheet";
+import { MenuItemCard, MenuItemCardSkeleton } from "@/components/foodup/MenuItemCard";
+import { MobileShell } from "@/components/foodup/MobileShell";
+import { PillButton } from "@/components/foodup/PillButton";
+import { EmptyState, ErrorState } from "@/components/foodup/StateViews";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useAuthUser } from "@/hooks/use-auth-user";
 import { supabase } from "@/integrations/supabase/client";
@@ -22,10 +22,10 @@ import { cn } from "@/lib/utils";
 export const Route = createFileRoute("/_authenticated/restaurante/$slug")({
   head: () => ({
     meta: [
-      { title: "Restaurante | Foodie" },
-      { name: "description", content: "Cardápio, cupons e entrega rápida pelo Foodie." },
-      { property: "og:title", content: "Restaurante | Foodie" },
-      { property: "og:description", content: "Cardápio, cupons e entrega rápida pelo Foodie." },
+      { title: "Restaurante | FoodUp" },
+      { name: "description", content: "Cardápio, cupons e entrega rápida pelo FoodUp." },
+      { property: "og:title", content: "Restaurante | FoodUp" },
+      { property: "og:description", content: "Cardápio, cupons e entrega rápida pelo FoodUp." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
     ],
@@ -145,7 +145,7 @@ function RestaurantPage() {
               <span className="text-muted-foreground">({(restaurant.rating_count / 1000).toFixed(1)} mil)</span>
             </p>
             <p className="mt-1 flex flex-wrap items-center gap-x-2 text-xs font-semibold text-primary-deep">
-              <span className="inline-flex items-center gap-1"><Truck className="h-3.5 w-3.5" /> {fee === 0 ? "Entrega grátis" : `Taxa ${formatBRL(fee)}`}</span>
+              <span className={cn("inline-flex items-center gap-1", fee === 0 && "text-success")}><Truck className="h-3.5 w-3.5" /> {fee === 0 ? "Entrega grátis" : `Taxa ${formatBRL(fee)}`}</span>
               <span className="inline-flex items-center gap-1 text-muted-foreground"><Clock className="h-3.5 w-3.5" /> {restaurant.eta_min} min</span>
             </p>
           </div>
@@ -207,7 +207,7 @@ function RestaurantPage() {
 
       {cartCount > 0 && (
         <div className="fixed inset-x-0 bottom-0 z-30 mx-auto w-full max-w-md px-5 pb-[calc(env(safe-area-inset-bottom)+16px)] animate-fade-up">
-          <Link to="/cesta" className="flex h-14 items-center justify-between rounded-full bg-gradient-primary px-5 font-semibold text-primary-foreground shadow-soft">
+          <Link to="/cesta" className="flex h-14 items-center justify-between rounded-full bg-primary px-5 font-semibold text-primary-foreground shadow-soft">
             <span className="flex items-center gap-2 text-sm">
               <span className="flex h-7 min-w-7 items-center justify-center rounded-full bg-card px-1.5 text-xs font-bold text-primary-deep">{cartCount}</span>
               Ver cesta

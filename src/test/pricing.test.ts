@@ -3,7 +3,7 @@ import { computeTotals, type CouponRule } from "@/lib/pricing";
 import { simulateOrder } from "@/lib/simulation";
 
 const percent30: CouponRule = {
-  code: "FOODIE30",
+  code: "FOODUP30",
   discount_type: "percent",
   value: 30,
   min_subtotal: 40,

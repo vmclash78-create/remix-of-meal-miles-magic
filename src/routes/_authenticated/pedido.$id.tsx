@@ -4,9 +4,9 @@ import { useServerFn } from "@tanstack/react-start";
 import { useEffect, useState } from "react";
 import { ArrowLeft, Bike, MessageCircle, PackageCheck, Phone, Star } from "lucide-react";
 import { format } from "date-fns";
-import { OrderStepper } from "@/components/foodie/OrderStepper";
-import { PillButton } from "@/components/foodie/PillButton";
-import { EmptyState, ErrorState } from "@/components/foodie/StateViews";
+import { OrderStepper } from "@/components/foodup/OrderStepper";
+import { PillButton } from "@/components/foodup/PillButton";
+import { EmptyState, ErrorState } from "@/components/foodup/StateViews";
 import { TrackingMap } from "@/components/map";
 import { Skeleton } from "@/components/ui/skeleton";
 import { supabase } from "@/integrations/supabase/client";
@@ -20,9 +20,9 @@ import type { Order, OrderStatusEvent } from "@/lib/types";
 export const Route = createFileRoute("/_authenticated/pedido/$id")({
   head: () => ({
     meta: [
-      { title: "Acompanhar pedido | Foodie" },
+      { title: "Acompanhar pedido | FoodUp" },
       { name: "description", content: "Acompanhe seu pedido e o entregador em tempo real." },
-      { property: "og:title", content: "Acompanhar pedido | Foodie" },
+      { property: "og:title", content: "Acompanhar pedido | FoodUp" },
       { property: "og:description", content: "Acompanhe seu pedido e o entregador em tempo real." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
@@ -160,8 +160,8 @@ function TrackingPage() {
           <OrderStepper status={st} mode={mode} progress={order.route_progress} />
 
           {st === "delivered" && (
-            <div className="rounded-2xl bg-primary-soft p-4 text-center animate-fade-up">
-              <p className="font-bold text-primary-deep">{mode === "pickup" ? "Pedido retirado!" : "Pedido entregue!"} Bom apetite 🎉</p>
+            <div className="rounded-2xl bg-success-soft p-4 text-center animate-fade-up">
+              <p className="font-bold text-success">{mode === "pickup" ? "Pedido retirado!" : "Pedido entregue!"} Bom apetite 🎉</p>
               <Link to="/inicio"><PillButton size="md" className="mt-3">Voltar ao início</PillButton></Link>
             </div>
           )}
@@ -179,7 +179,7 @@ function TrackingPage() {
                 <a href={`sms:${courier.phone}`} aria-label="Mensagem" className="flex h-10 w-10 items-center justify-center rounded-full bg-primary-soft text-primary-deep">
                   <MessageCircle className="h-4.5 w-4.5" />
                 </a>
-                <a href={`tel:${courier.phone}`} aria-label="Ligar" className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-primary text-primary-foreground">
+                <a href={`tel:${courier.phone}`} aria-label="Ligar" className="flex h-10 w-10 items-center justify-center rounded-full bg-primary text-primary-foreground">
                   <Phone className="h-4.5 w-4.5" />
                 </a>
               </div>

@@ -44,7 +44,7 @@ export function RestaurantCard({ restaurant }: { restaurant: Restaurant }) {
             <MapPin className="h-3 w-3" /> {Number(restaurant.distance_km).toFixed(1)} km
           </span>
         </div>
-        <p className="text-[11px] font-semibold text-primary-deep">
+        <p className={fee === 0 ? "text-[11px] font-semibold text-success" : "text-[11px] font-semibold text-muted-foreground"}>
           {fee === 0 ? "Entrega grátis" : `Entrega ${formatBRL(fee)}`}
         </p>
       </div>

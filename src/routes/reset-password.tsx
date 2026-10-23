@@ -2,17 +2,17 @@ import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { KeyRound, Lock } from "lucide-react";
 import { toast } from "sonner";
-import { Logo } from "@/components/foodie/Logo";
-import { PillButton } from "@/components/foodie/PillButton";
+import { Logo } from "@/components/foodup/Logo";
+import { PillButton } from "@/components/foodup/PillButton";
 import { supabase } from "@/integrations/supabase/client";
 
 export const Route = createFileRoute("/reset-password")({
   head: () => ({
     meta: [
-      { title: "Nova senha | Foodie" },
-      { name: "description", content: "Crie uma nova senha para sua conta Foodie." },
-      { property: "og:title", content: "Nova senha | Foodie" },
-      { property: "og:description", content: "Crie uma nova senha para sua conta Foodie." },
+      { title: "Nova senha | FoodUp" },
+      { name: "description", content: "Crie uma nova senha para sua conta FoodUp." },
+      { property: "og:title", content: "Nova senha | FoodUp" },
+      { property: "og:description", content: "Crie uma nova senha para sua conta FoodUp." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
     ],
@@ -53,7 +53,7 @@ function ResetPassword() {
   return (
     <div className="min-h-screen bg-muted/60">
       <div className="mx-auto flex min-h-screen w-full max-w-md flex-col bg-card px-6 py-12">
-        <Logo className="text-3xl" />
+        <Logo className="h-9" />
         <div className="mt-10 flex h-16 w-16 items-center justify-center rounded-full bg-primary-soft text-primary-deep">
           <KeyRound className="h-7 w-7" />
         </div>

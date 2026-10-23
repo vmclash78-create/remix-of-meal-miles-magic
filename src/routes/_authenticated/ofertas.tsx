@@ -2,9 +2,9 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
 import { TicketPercent } from "lucide-react";
 import { toast } from "sonner";
-import { CouponCard } from "@/components/foodie/CouponCard";
-import { MobileShell } from "@/components/foodie/MobileShell";
-import { EmptyState, ErrorState } from "@/components/foodie/StateViews";
+import { CouponCard } from "@/components/foodup/CouponCard";
+import { MobileShell } from "@/components/foodup/MobileShell";
+import { EmptyState, ErrorState } from "@/components/foodup/StateViews";
 import { Skeleton } from "@/components/ui/skeleton";
 import { couponsQuery } from "@/lib/queries";
 import { useCart } from "@/stores/cart";
@@ -12,10 +12,10 @@ import { useCart } from "@/stores/cart";
 export const Route = createFileRoute("/_authenticated/ofertas")({
   head: () => ({
     meta: [
-      { title: "Ofertas | Foodie" },
-      { name: "description", content: "Cupons de desconto e frete grátis no Foodie." },
-      { property: "og:title", content: "Ofertas | Foodie" },
-      { property: "og:description", content: "Cupons de desconto e frete grátis no Foodie." },
+      { title: "Ofertas | FoodUp" },
+      { name: "description", content: "Cupons de desconto e frete grátis no FoodUp." },
+      { property: "og:title", content: "Ofertas | FoodUp" },
+      { property: "og:description", content: "Cupons de desconto e frete grátis no FoodUp." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
     ],

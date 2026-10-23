@@ -5,12 +5,13 @@
 @custom-variant dark (&:is(.dark *));
 
 /*
- * Foodie design system. All colors in oklch.
- * Brand: primary #8CB04F, deep #4F6F2A, background #F4F5EF.
+ * FoodUp design system — laranja e preto.
+ * Escuro é o padrão (classe .dark no <html>); :root guarda o modo claro.
+ * Nenhuma cor solta nos componentes: tudo passa por estes tokens.
  */
 
 @theme inline {
-  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -28,6 +29,13 @@
   --color-primary-foreground: var(--primary-foreground);
   --color-primary-deep: var(--primary-deep);
   --color-primary-soft: var(--primary-soft);
+  --color-highlight: var(--highlight);
+  --color-success: var(--success);
+  --color-success-foreground: var(--success-foreground);
+  --color-success-soft: var(--success-soft);
+  --color-header: var(--header);
+  --color-brand-white: var(--brand-white);
+  --color-brand-black: var(--brand-black);
   --color-secondary: var(--secondary);
   --color-secondary-foreground: var(--secondary-foreground);
   --color-muted: var(--muted);
@@ -58,74 +66,94 @@
   --shadow-float: var(--shadow-float-value);
 }
 
+/* Modo claro */
 :root {
-  --radius: 1rem;
-  --background: oklch(0.968 0.008 114.2);
-  --foreground: oklch(0.268 0.041 130.4);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.268 0.041 130.4);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.268 0.041 130.4);
-  --primary: oklch(0.71 0.132 126.5);
-  --primary-foreground: oklch(1 0 0);
-  --primary-deep: oklch(0.501 0.104 130.3);
-  --primary-soft: oklch(0.941 0.03 121.4);
-  --secondary: oklch(0.941 0.03 121.4);
-  --secondary-foreground: oklch(0.38 0.08 130);
-  --muted: oklch(0.948 0.01 115);
-  --muted-foreground: oklch(0.55 0.02 125);
-  --accent: oklch(0.941 0.03 121.4);
-  --accent-foreground: oklch(0.38 0.08 130);
-  --destructive: oklch(0.6 0.21 27);
-  --destructive-foreground: oklch(1 0 0);
-  --rating: oklch(0.8 0.16 80);
-  --border: oklch(0.92 0.012 115);
-  --input: oklch(0.948 0.01 115);
-  --ring: oklch(0.71 0.132 126.5);
-  --gradient-primary: linear-gradient(120deg, oklch(0.501 0.104 130.3), oklch(0.71 0.132 126.5) 60%, oklch(0.804 0.136 126.6));
-  --gradient-header: linear-gradient(160deg, oklch(0.501 0.104 130.3), oklch(0.71 0.132 126.5));
-  --shadow-soft-value: 0 6px 24px -10px oklch(0.4 0.05 130 / 0.18);
-  --shadow-float-value: 0 -8px 32px -12px oklch(0.4 0.05 130 / 0.25);
-  --chart-1: oklch(0.71 0.132 126.5);
-  --chart-2: oklch(0.501 0.104 130.3);
-  --chart-3: oklch(0.804 0.136 126.6);
-  --chart-4: oklch(0.8 0.16 80);
-  --chart-5: oklch(0.6 0.21 27);
-  --sidebar: oklch(1 0 0);
-  --sidebar-foreground: oklch(0.268 0.041 130.4);
-  --sidebar-primary: oklch(0.71 0.132 126.5);
-  --sidebar-primary-foreground: oklch(1 0 0);
-  --sidebar-accent: oklch(0.941 0.03 121.4);
-  --sidebar-accent-foreground: oklch(0.38 0.08 130);
-  --sidebar-border: oklch(0.92 0.012 115);
-  --sidebar-ring: oklch(0.71 0.132 126.5);
+  --radius: 0.5rem;
+
+  /* Marca (iguais nos dois modos) */
+  --brand-orange: #ff6b24;
+  --brand-yellow: #ffba3d;
+  --brand-black: #0f0f0f;
+  --brand-white: #ffffff;
+  --brand-green: #50a773;
+
+  --background: #ffffff;
+  --foreground: #0f0f0f;
+  --card: #f7f7f7;
+  --card-foreground: #0f0f0f;
+  --popover: #ffffff;
+  --popover-foreground: #0f0f0f;
+  --primary: var(--brand-orange);
+  --primary-foreground: var(--brand-white);
+  --primary-deep: #d9520f;
+  --primary-soft: color-mix(in oklab, var(--brand-orange) 12%, #ffffff);
+  --highlight: var(--brand-yellow);
+  --success: var(--brand-green);
+  --success-foreground: var(--brand-white);
+  --success-soft: color-mix(in oklab, var(--brand-green) 14%, #ffffff);
+  --header: var(--brand-black);
+  --secondary: #efefef;
+  --secondary-foreground: #0f0f0f;
+  --muted: #efefef;
+  --muted-foreground: #6b6b6b;
+  --accent: #efefef;
+  --accent-foreground: #0f0f0f;
+  --destructive: #e5484d;
+  --destructive-foreground: var(--brand-white);
+  --rating: var(--brand-yellow);
+  --border: #e6e6e6;
+  --input: #efefef;
+  --ring: var(--brand-orange);
+  --gradient-header:
+    radial-gradient(120% 90% at 100% 0%, color-mix(in oklab, var(--brand-orange) 30%, transparent), transparent 60%),
+    var(--header);
+  --shadow-soft-value: 0 6px 24px -12px rgb(15 15 15 / 0.18);
+  --shadow-float-value: 0 -8px 32px -14px rgb(15 15 15 / 0.22);
+  --chart-1: var(--brand-orange);
+  --chart-2: var(--brand-yellow);
+  --chart-3: #a1a1a1;
+  --chart-4: var(--brand-green);
+  --chart-5: #e5484d;
+  --sidebar: #f7f7f7;
+  --sidebar-foreground: #0f0f0f;
+  --sidebar-primary: var(--brand-orange);
+  --sidebar-primary-foreground: var(--brand-white);
+  --sidebar-accent: #efefef;
+  --sidebar-accent-foreground: #0f0f0f;
+  --sidebar-border: #e6e6e6;
+  --sidebar-ring: var(--brand-orange);
 }
 
+/* Modo escuro (padrão) */
 .dark {
-  --background: oklch(0.2 0.02 130);
-  --foreground: oklch(0.96 0.01 115);
-  --card: oklch(0.26 0.025 130);
-  --card-foreground: oklch(0.96 0.01 115);
-  --popover: oklch(0.26 0.025 130);
-  --popover-foreground: oklch(0.96 0.01 115);
-  --primary: oklch(0.74 0.14 126.5);
-  --primary-foreground: oklch(0.2 0.03 130);
-  --primary-deep: oklch(0.55 0.11 130);
-  --primary-soft: oklch(0.32 0.05 128);
-  --secondary: oklch(0.32 0.05 128);
-  --secondary-foreground: oklch(0.92 0.04 122);
-  --muted: oklch(0.3 0.02 128);
-  --muted-foreground: oklch(0.72 0.02 120);
-  --accent: oklch(0.32 0.05 128);
-  --accent-foreground: oklch(0.92 0.04 122);
-  --destructive: oklch(0.68 0.19 25);
-  --destructive-foreground: oklch(1 0 0);
-  --rating: oklch(0.82 0.15 80);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 12%);
-  --ring: oklch(0.74 0.14 126.5);
-  --shadow-soft-value: 0 6px 24px -10px oklch(0 0 0 / 0.5);
-  --shadow-float-value: 0 -8px 32px -12px oklch(0 0 0 / 0.6);
+  --background: #0f0f0f;
+  --foreground: #ffffff;
+  --card: #1a1a1a;
+  --card-foreground: #ffffff;
+  --popover: #1a1a1a;
+  --popover-foreground: #ffffff;
+  --primary: var(--brand-orange);
+  --primary-foreground: var(--brand-white);
+  --primary-deep: var(--brand-orange);
+  --primary-soft: color-mix(in oklab, var(--brand-orange) 16%, #1a1a1a);
+  --success-soft: color-mix(in oklab, var(--brand-green) 18%, #1a1a1a);
+  --header: #1a1a1a;
+  --secondary: #2a2a2a;
+  --secondary-foreground: #ffffff;
+  --muted: #222222;
+  --muted-foreground: #a1a1a1;
+  --accent: #2a2a2a;
+  --accent-foreground: #ffffff;
+  --destructive: #f2555a;
+  --border: #2a2a2a;
+  --input: #2a2a2a;
+  --shadow-soft-value: 0 6px 24px -12px rgb(0 0 0 / 0.6);
+  --shadow-float-value: 0 -8px 32px -14px rgb(0 0 0 / 0.7);
+  --sidebar: #1a1a1a;
+  --sidebar-foreground: #ffffff;
+  --sidebar-accent: #2a2a2a;
+  --sidebar-accent-foreground: #ffffff;
+  --sidebar-border: #2a2a2a;
 }
 
 @layer base {
@@ -133,10 +161,18 @@
     border-color: var(--color-border);
   }
 
+  html {
+    color-scheme: light;
+  }
+  html.dark {
+    color-scheme: dark;
+  }
+
   html,
   body {
     font-family: var(--font-sans);
     -webkit-tap-highlight-color: transparent;
+    -webkit-font-smoothing: antialiased;
   }
 
   body {
@@ -145,12 +181,8 @@
   }
 }
 
-@utility bg-gradient-primary {
-  background-image: var(--gradient-primary);
-}
-
 @utility bg-gradient-header {
-  background-image: var(--gradient-header);
+  background: var(--gradient-header);
 }
 
 @utility no-scrollbar {
@@ -220,17 +252,17 @@
 }
 
 /* Leaflet map styling */
-.foodie-route {
-  stroke: var(--primary-deep);
-}
-.foodie-route-bg {
+.foodup-route {
   stroke: var(--primary);
+}
+.foodup-route-bg {
+  stroke: var(--highlight);
 }
 .leaflet-container {
   font-family: var(--font-sans);
   background: var(--muted);
 }
-.foodie-marker {
+.foodup-marker {
   background: transparent;
   border: none;
 }

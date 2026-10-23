@@ -5,12 +5,12 @@ import { ChevronDown, MapPin, RotateCcw, Search, Store, X } from "lucide-react";
 import { formatDistanceToNow } from "date-fns";
 import { ptBR } from "date-fns/locale";
 import { toast } from "sonner";
-import courierImg from "@/assets/courier-scooter.png";
-import { AddressSheet } from "@/components/foodie/AddressSheet";
-import { CouponCard } from "@/components/foodie/CouponCard";
-import { MobileShell } from "@/components/foodie/MobileShell";
-import { RestaurantCard, RestaurantCardSkeleton } from "@/components/foodie/RestaurantCard";
-import { EmptyState, ErrorState } from "@/components/foodie/StateViews";
+import { AddressSheet } from "@/components/foodup/AddressSheet";
+import { CouponCard } from "@/components/foodup/CouponCard";
+import { Mascot } from "@/components/foodup/Mascot";
+import { MobileShell } from "@/components/foodup/MobileShell";
+import { RestaurantCard, RestaurantCardSkeleton } from "@/components/foodup/RestaurantCard";
+import { EmptyState, ErrorState } from "@/components/foodup/StateViews";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useAuthUser } from "@/hooks/use-auth-user";
 import { useSelectedAddress } from "@/hooks/use-selected-address";
@@ -22,9 +22,9 @@ import { cn } from "@/lib/utils";
 export const Route = createFileRoute("/_authenticated/inicio")({
   head: () => ({
     meta: [
-      { title: "Início | Foodie" },
+      { title: "Início | FoodUp" },
       { name: "description", content: "Restaurantes perto de você, ofertas e seus pedidos favoritos." },
-      { property: "og:title", content: "Início | Foodie" },
+      { property: "og:title", content: "Início | FoodUp" },
       { property: "og:description", content: "Restaurantes perto de você, ofertas e seus pedidos favoritos." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
@@ -89,7 +89,7 @@ function HomePage() {
 
   return (
     <MobileShell withNav>
-      {/* Green header */}
+      {/* Header escuro da marca */}
       <header className="rounded-b-[32px] bg-gradient-header px-5 pb-6 pt-[calc(env(safe-area-inset-top)+16px)]">
         <div className="flex items-center gap-3">
           <Link to="/perfil" aria-label="Perfil" className="flex h-11 w-11 shrink-0 items-center justify-center overflow-hidden rounded-full bg-card text-sm font-bold text-primary-deep ring-2 ring-primary-foreground/40">
@@ -132,20 +132,20 @@ function HomePage() {
         {/* Banner */}
         {!search && (
           <section className="px-5">
-            <div className="relative overflow-hidden rounded-[24px] bg-gradient-primary p-5 text-primary-foreground shadow-soft">
-              <div className="relative z-10 max-w-[58%]">
-                <p className="text-[11px] font-semibold uppercase tracking-wider opacity-85">Só hoje</p>
+            <div className="relative overflow-hidden rounded-[24px] bg-gradient-header p-5 text-brand-white shadow-soft">
+              <div className="relative z-10 max-w-[55%]">
+                <p className="text-[11px] font-semibold uppercase tracking-wider text-highlight">Só hoje</p>
                 <h2 className="mt-1 text-2xl font-extrabold leading-tight">Entrega rápida e grátis!</h2>
                 <p className="mt-1 text-xs opacity-90">Use o cupom FRETEGRATIS em qualquer pedido.</p>
                 <button
                   type="button"
                   onClick={() => applyCoupon("FRETEGRATIS")}
-                  className="mt-3 rounded-full bg-card px-4 py-2 text-xs font-bold text-primary-deep active:scale-95"
+                  className="mt-3 rounded-xl bg-primary px-4 py-2 text-xs font-bold text-primary-foreground active:scale-95"
                 >
                   {couponCode === "FRETEGRATIS" ? "Cupom ativo ✓" : "Pedir agora"}
                 </button>
               </div>
-              <img src={courierImg} alt="" width={1024} height={1024} className="absolute -bottom-6 -right-6 w-48 animate-float" />
+              <Mascot alt="" className="absolute -bottom-2 -right-10 w-48 animate-float" />
             </div>
           </section>
         )}
@@ -166,7 +166,7 @@ function HomePage() {
                       aria-pressed={active}
                       className={cn(
                         "flex w-16 shrink-0 flex-col items-center gap-1 rounded-2xl py-2.5 text-[11px] font-semibold transition-all",
-                        active ? "bg-gradient-primary text-primary-foreground shadow-soft" : "bg-card text-foreground",
+                        active ? "bg-primary text-primary-foreground shadow-soft" : "bg-card text-foreground",
                       )}
                     >
                       <span className="text-2xl">{c.emoji}</span>

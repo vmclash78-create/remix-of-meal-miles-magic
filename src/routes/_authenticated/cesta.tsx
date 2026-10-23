@@ -4,13 +4,13 @@ import { useServerFn } from "@tanstack/react-start";
 import { useMemo, useState } from "react";
 import { ArrowLeft, Banknote, Bike, ChevronRight, CreditCard, MapPin, Plus, QrCode, ShoppingBag, Store, TicketPercent, X } from "lucide-react";
 import { toast } from "sonner";
-import { AddressSheet } from "@/components/foodie/AddressSheet";
-import { BottomSheet } from "@/components/foodie/BottomSheet";
-import { couponHeadline } from "@/components/foodie/CouponCard";
-import { MobileShell } from "@/components/foodie/MobileShell";
-import { PillButton } from "@/components/foodie/PillButton";
-import { QuantityStepper } from "@/components/foodie/QuantityStepper";
-import { EmptyState } from "@/components/foodie/StateViews";
+import { AddressSheet } from "@/components/foodup/AddressSheet";
+import { BottomSheet } from "@/components/foodup/BottomSheet";
+import { couponHeadline } from "@/components/foodup/CouponCard";
+import { MobileShell } from "@/components/foodup/MobileShell";
+import { PillButton } from "@/components/foodup/PillButton";
+import { QuantityStepper } from "@/components/foodup/QuantityStepper";
+import { EmptyState } from "@/components/foodup/StateViews";
 import { MiniMap } from "@/components/map";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useAuthUser } from "@/hooks/use-auth-user";
@@ -25,9 +25,9 @@ import { cn } from "@/lib/utils";
 export const Route = createFileRoute("/_authenticated/cesta")({
   head: () => ({
     meta: [
-      { title: "Sua cesta | Foodie" },
+      { title: "Sua cesta | FoodUp" },
       { name: "description", content: "Revise seus itens, aplique cupons e finalize o pedido." },
-      { property: "og:title", content: "Sua cesta | Foodie" },
+      { property: "og:title", content: "Sua cesta | FoodUp" },
       { property: "og:description", content: "Revise seus itens, aplique cupons e finalize o pedido." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
@@ -162,7 +162,7 @@ function CheckoutPage() {
               onClick={() => cart.setMode(m)}
               className={cn(
                 "flex h-10 items-center justify-center gap-2 rounded-full text-sm font-semibold transition-all",
-                cart.mode === m ? "bg-gradient-primary text-primary-foreground shadow-soft" : "text-muted-foreground",
+                cart.mode === m ? "bg-primary text-primary-foreground shadow-soft" : "text-muted-foreground",
               )}
             >
               {m === "delivery" ? <Bike className="h-4 w-4" /> : <Store className="h-4 w-4" />}
@@ -376,7 +376,7 @@ function Row({ label, value, bold, highlight }: { label: string; value: string; 
   return (
     <div className="flex items-center justify-between">
       <span className={cn(bold ? "text-base font-bold" : "text-muted-foreground")}>{label}</span>
-      <span className={cn(bold ? "text-base font-extrabold" : "font-semibold", highlight && "text-primary-deep")}>{value}</span>
+      <span className={cn(bold ? "text-base font-extrabold" : "font-semibold", highlight && "text-success")}>{value}</span>
     </div>
   );
 }

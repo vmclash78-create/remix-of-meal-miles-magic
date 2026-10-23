@@ -3,10 +3,11 @@ import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { ChevronRight, LogOut, MapPin, Receipt, Trash2 } from "lucide-react";
 import { format } from "date-fns";
 import { toast } from "sonner";
-import { addressIcon } from "@/components/foodie/AddressSheet";
-import { MobileShell } from "@/components/foodie/MobileShell";
-import { PillButton } from "@/components/foodie/PillButton";
-import { ErrorState } from "@/components/foodie/StateViews";
+import { addressIcon } from "@/components/foodup/AddressSheet";
+import { MobileShell } from "@/components/foodup/MobileShell";
+import { PillButton } from "@/components/foodup/PillButton";
+import { ErrorState } from "@/components/foodup/StateViews";
+import { ThemeToggle } from "@/components/foodup/ThemeToggle";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useAuthUser } from "@/hooks/use-auth-user";
 import { supabase } from "@/integrations/supabase/client";
@@ -18,10 +19,10 @@ import { useLocationStore } from "@/stores/cart";
 export const Route = createFileRoute("/_authenticated/perfil")({
   head: () => ({
     meta: [
-      { title: "Perfil | Foodie" },
-      { name: "description", content: "Seus pedidos, endereços e dados da conta Foodie." },
-      { property: "og:title", content: "Perfil | Foodie" },
-      { property: "og:description", content: "Seus pedidos, endereços e dados da conta Foodie." },
+      { title: "Perfil | FoodUp" },
+      { name: "description", content: "Seus pedidos, endereços e dados da conta FoodUp." },
+      { property: "og:title", content: "Perfil | FoodUp" },
+      { property: "og:description", content: "Seus pedidos, endereços e dados da conta FoodUp." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
     ],
@@ -62,10 +63,11 @@ function ProfilePage() {
           <div className="flex h-16 w-16 items-center justify-center overflow-hidden rounded-full bg-card text-xl font-bold text-primary-deep">
             {profile.data?.avatar_url ? <img src={profile.data.avatar_url} alt="" className="h-full w-full object-cover" /> : name.slice(0, 1).toUpperCase()}
           </div>
-          <div className="min-w-0">
+          <div className="min-w-0 flex-1">
             {profile.isLoading ? <Skeleton className="h-5 w-32 bg-primary-foreground/30" /> : <p className="truncate text-lg font-bold">{name}</p>}
             <p className="truncate text-sm opacity-85">{user.email}</p>
           </div>
+          <ThemeToggle className="shrink-0" />
         </div>
       </header>
 

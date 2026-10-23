@@ -113,7 +113,7 @@ function ItemDetailBody({ item, restaurant, onDone }: { item: MenuItem; restaura
           <span className="inline-flex items-center gap-1"><Clock className="h-3.5 w-3.5" /> {item.prep_min} min</span>
           <span className="inline-flex items-center gap-1"><Flame className="h-3.5 w-3.5 text-primary" /> {item.kcal} kcal</span>
           {Number(restaurant.delivery_fee) === 0 && (
-            <span className="inline-flex items-center gap-1 text-primary-deep"><Truck className="h-3.5 w-3.5" /> Entrega grátis</span>
+            <span className="inline-flex items-center gap-1 text-success"><Truck className="h-3.5 w-3.5" /> Entrega grátis</span>
           )}
         </div>
       </div>

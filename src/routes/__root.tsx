@@ -14,6 +14,7 @@ import { Toaster } from "sonner";
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { supabase } from "@/integrations/supabase/client";
+import { THEME_INIT_SCRIPT } from "@/hooks/use-theme";
 
 function NotFoundComponent() {
   return (
@@ -27,7 +28,7 @@ function NotFoundComponent() {
         <div className="mt-6">
           <Link
             to="/inicio"
-            className="inline-flex items-center justify-center rounded-full bg-gradient-primary px-6 py-3 text-sm font-semibold text-primary-foreground"
+            className="inline-flex items-center justify-center rounded-full bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground"
           >
             Voltar ao início
           </Link>
@@ -59,7 +60,7 @@ function ErrorComponent({ error, reset }: ErrorComponentProps) {
               router.invalidate();
               reset();
             }}
-            className="inline-flex items-center justify-center rounded-full bg-gradient-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground"
+            className="inline-flex items-center justify-center rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground"
           >
             Tentar novamente
           </button>
@@ -80,10 +81,13 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1, viewport-fit=cover" },
-      { name: "theme-color", content: "#8CB04F" },
-      { title: "Foodie — Comida deliciosa, entregue rápido" },
+      { name: "theme-color", content: "#0F0F0F" },
+      { name: "application-name", content: "FoodUp" },
+      { name: "apple-mobile-web-app-title", content: "FoodUp" },
+      { title: "FoodUp — Delivery do seu jeito" },
       { name: "description", content: "Peça dos melhores restaurantes perto de você e acompanhe a entrega ao vivo." },
-      { property: "og:title", content: "Foodie — Comida deliciosa, entregue rápido" },
+      { property: "og:site_name", content: "FoodUp" },
+      { property: "og:title", content: "FoodUp — Delivery do seu jeito" },
       { property: "og:description", content: "Peça dos melhores restaurantes perto de você e acompanhe a entrega ao vivo." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -93,11 +97,15 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
         rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap",
+        href: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap",
       },
       { rel: "stylesheet", href: appCss },
-      { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
+      { rel: "icon", type: "image/svg+xml", href: "/favicon.svg" },
+      { rel: "icon", type: "image/png", href: "/favicon.png" },
+      { rel: "apple-touch-icon", href: "/brand/apple-touch-icon.png" },
+      { rel: "manifest", href: "/site.webmanifest" },
     ],
+    scripts: [{ children: THEME_INIT_SCRIPT }],
   }),
   shellComponent: RootShell,
   component: RootComponent,
@@ -107,7 +115,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 
 function RootShell({ children }: { children: ReactNode }) {
   return (
-    <html lang="pt-BR">
+    <html lang="pt-BR" className="dark" suppressHydrationWarning>
       <head>
         <HeadContent />
       </head>

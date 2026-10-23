@@ -1,15 +1,15 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useEffect } from "react";
-import courierImg from "@/assets/courier-scooter.png";
-import { Logo } from "@/components/foodie/Logo";
+import { Logo } from "@/components/foodup/Logo";
+import { Mascot } from "@/components/foodup/Mascot";
 import { supabase } from "@/integrations/supabase/client";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Foodie — Comida deliciosa, entregue rápido" },
+      { title: "FoodUp — Delivery do seu jeito" },
       { name: "description", content: "Delivery de comida com os melhores restaurantes da cidade e rastreamento ao vivo do seu pedido." },
-      { property: "og:title", content: "Foodie — Comida deliciosa, entregue rápido" },
+      { property: "og:title", content: "FoodUp — Delivery do seu jeito" },
       { property: "og:description", content: "Delivery de comida com os melhores restaurantes da cidade e rastreamento ao vivo do seu pedido." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -38,21 +38,15 @@ function Splash() {
       type="button"
       onClick={go}
       className="flex min-h-screen w-full flex-col items-center justify-center bg-background px-8 text-center"
-      aria-label="Entrar no Foodie"
+      aria-label="Entrar no FoodUp"
     >
-      <div className="relative">
-        <div className="absolute inset-x-6 bottom-2 top-10 rounded-full bg-primary-soft" />
-        <img
-          src={courierImg}
-          alt="Entregador do Foodie em uma moto verde"
-          width={1024}
-          height={1024}
-          className="relative w-64 animate-ride-in"
-        />
+      <div className="relative w-full max-w-xs">
+        <div className="absolute inset-x-8 bottom-0 h-6 rounded-[50%] bg-primary/20 blur-xl" />
+        <Mascot priority className="relative w-full animate-ride-in" />
       </div>
-      <Logo className="mt-8 animate-fade-up text-5xl [animation-delay:250ms]" />
-      <p className="mt-2 animate-fade-up text-sm text-muted-foreground [animation-delay:400ms]">
-        Comida deliciosa, entregue rápido
+      <Logo className="mt-10 h-14 animate-fade-up [animation-delay:250ms]" />
+      <p className="mt-3 animate-fade-up text-base font-medium text-muted-foreground [animation-delay:400ms]">
+        Delivery do seu jeito
       </p>
       <div className="mt-10 flex gap-1.5 animate-fade-up [animation-delay:600ms]">
         <span className="h-1.5 w-6 rounded-full bg-primary" />

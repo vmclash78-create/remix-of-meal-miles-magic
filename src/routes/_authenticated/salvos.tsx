@@ -1,20 +1,20 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
 import { Heart } from "lucide-react";
-import { MobileShell } from "@/components/foodie/MobileShell";
-import { PillButton } from "@/components/foodie/PillButton";
-import { RestaurantCard, RestaurantCardSkeleton } from "@/components/foodie/RestaurantCard";
-import { EmptyState, ErrorState } from "@/components/foodie/StateViews";
+import { MobileShell } from "@/components/foodup/MobileShell";
+import { PillButton } from "@/components/foodup/PillButton";
+import { RestaurantCard, RestaurantCardSkeleton } from "@/components/foodup/RestaurantCard";
+import { EmptyState, ErrorState } from "@/components/foodup/StateViews";
 import { useAuthUser } from "@/hooks/use-auth-user";
 import { favoritesQuery } from "@/lib/queries";
 
 export const Route = createFileRoute("/_authenticated/salvos")({
   head: () => ({
     meta: [
-      { title: "Salvos | Foodie" },
-      { name: "description", content: "Seus restaurantes favoritos no Foodie." },
-      { property: "og:title", content: "Salvos | Foodie" },
-      { property: "og:description", content: "Seus restaurantes favoritos no Foodie." },
+      { title: "Salvos | FoodUp" },
+      { name: "description", content: "Seus restaurantes favoritos no FoodUp." },
+      { property: "og:title", content: "Salvos | FoodUp" },
+      { property: "og:description", content: "Seus restaurantes favoritos no FoodUp." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
     ],
