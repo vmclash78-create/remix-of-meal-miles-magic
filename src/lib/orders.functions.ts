@@ -186,6 +186,48 @@ export const placeOrder = createServerFn({ method: "POST" })
     return { id: order.id };
   });
 
+export const cancelOrder = createServerFn({ method: "POST" })
+  .middleware([requireSupabaseAuth])
+  .inputValidator((input: unknown) => z.object({ orderId: z.string().uuid() }).parse(input))
+  .handler(async ({ data, context }) => {
+    const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+    const { data: cancelledOrder, error } = await supabaseAdmin
+      .from("orders")
+      .update({ status: "cancelled" })
+      .eq("id", data.orderId)
+      .eq("user_id", context.userId)
+      .eq("status", "confirmed")
+      .select("id")
+      .maybeSingle();
+
+    if (error) throw new Error("Não foi possível cancelar o pedido.");
+    if (!cancelledOrder) {
+      const { data: order, error: orderError } = await supabaseAdmin
+        .from("orders")
+        .select("status")
+        .eq("id", data.orderId)
+        .eq("user_id", context.userId)
+        .maybeSingle();
+      if (orderError) throw new Error("Não foi possível verificar o status do pedido.");
+      if (!order) throw new Error("Pedido não encontrado.");
+      throw new Error(
+        order.status === "cancelled"
+          ? "Este pedido já foi cancelado."
+          : "O restaurante já começou a preparar. Não é mais possível cancelar pelo app.",
+      );
+    }
+
+    const { error: eventError } = await supabaseAdmin
+      .from("order_status_events")
+      .insert({ order_id: cancelledOrder.id, status: "cancelled" });
+    if (eventError) {
+      console.error("[Order] Pedido cancelado, mas falhou ao registrar o evento de status.", eventError);
+      throw new Error("Pedido cancelado, mas não foi possível atualizar o histórico. Atualize a tela.");
+    }
+
+    return { id: cancelledOrder.id, status: "cancelled" as const };
+  });
+
 /** Advances the demo simulation for one of the caller's orders. Idempotent. */
 export const tickOrder = createServerFn({ method: "POST" })
   .middleware([requireSupabaseAuth])
@@ -212,30 +254,47 @@ export const tickOrder = createServerFn({ method: "POST" })
     const statusChanged = sim.status !== order.status;
     const progressChanged = Math.abs(sim.progress - order.route_progress) > 0.0005;
 
+    let updated = true;
+    if (statusChanged || progressChanged) {
+      const currentIdx = STATUS_FLOW.indexOf(order.status as OrderStatus);
+      const nextIdx = STATUS_FLOW.indexOf(sim.status);
+      if (nextIdx < currentIdx) return { status: order.status, progress: order.route_progress };
+
+      const { data: changedOrder, error: updateError } = await supabaseAdmin
+        .from("orders")
+        .update({
+          status: sim.status,
+          route_progress: sim.progress,
+          ...(pos ? { courier_lat: pos[0], courier_lng: pos[1] } : {}),
+        })
+        .eq("id", order.id)
+        .eq("status", order.status)
+        .select("id")
+        .maybeSingle();
+      if (updateError) throw new Error("Não foi possível atualizar o andamento do pedido.");
+      updated = !!changedOrder;
+    }
+
+    if (!updated) {
+      const { data: currentOrder, error: currentError } = await context.supabase
+        .from("orders")
+        .select("status, route_progress")
+        .eq("id", order.id)
+        .maybeSingle();
+      if (currentError || !currentOrder) throw new Error("Não foi possível verificar o status atual do pedido.");
+      return { status: currentOrder.status, progress: currentOrder.route_progress };
+    }
+
     if (statusChanged) {
       const rows = sim.reached.map((r) => ({
         order_id: order.id,
         status: r.status,
         created_at: new Date(createdAt + r.atSec * 1000).toISOString(),
       }));
-      await supabaseAdmin
+      const { error: eventError } = await supabaseAdmin
         .from("order_status_events")
         .upsert(rows, { onConflict: "order_id,status", ignoreDuplicates: true });
-    }
-
-    if (statusChanged || progressChanged) {
-      const currentIdx = STATUS_FLOW.indexOf(order.status as OrderStatus);
-      const nextIdx = STATUS_FLOW.indexOf(sim.status);
-      if (nextIdx >= currentIdx) {
-        await supabaseAdmin
-          .from("orders")
-          .update({
-            status: sim.status,
-            route_progress: sim.progress,
-            ...(pos ? { courier_lat: pos[0], courier_lng: pos[1] } : {}),
-          })
-          .eq("id", order.id);
-      }
+      if (eventError) throw new Error("O status foi atualizado, mas o histórico do pedido não foi salvo.");
     }
 
     return { status: sim.status, progress: sim.progress };

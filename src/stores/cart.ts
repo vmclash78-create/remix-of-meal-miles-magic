@@ -68,7 +68,7 @@ export const useCart = create<CartState>()(
           const existing = lines.find((l) => l.key === key);
           return {
             restaurant,
-            couponCode: sameRestaurant ? s.couponCode : s.couponCode,
+            couponCode: sameRestaurant ? s.couponCode : null,
             lines: existing
               ? lines.map((l) => (l.key === key ? { ...l, quantity: l.quantity + line.quantity } : l))
               : [...lines, { ...line, key }],

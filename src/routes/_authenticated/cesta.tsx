@@ -292,7 +292,12 @@ function CheckoutPage() {
           <p className="text-[11px] text-muted-foreground">Total</p>
           <p className="text-xl font-extrabold">{formatBRL(totals.total)}</p>
         </div>
-        <PillButton className="flex-1" loading={placing} onClick={submit}>
+        <PillButton
+          className="flex-1"
+          loading={placing}
+          disabled={cart.mode === "delivery" && (addrLoading || !address)}
+          onClick={submit}
+        >
           Fazer pedido
         </PillButton>
       </div>

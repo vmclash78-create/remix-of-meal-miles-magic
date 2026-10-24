@@ -2,8 +2,19 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
 import { useEffect, useState } from "react";
-import { ArrowLeft, Bike, MessageCircle, PackageCheck, Phone, Star } from "lucide-react";
+import { ArrowLeft, Bike, LoaderCircle, MessageCircle, PackageCheck, Phone, Star, XCircle } from "lucide-react";
 import { format } from "date-fns";
+import { toast } from "sonner";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "@/components/ui/alert-dialog";
 import { OrderStepper } from "@/components/foodup/OrderStepper";
 import { PillButton } from "@/components/foodup/PillButton";
 import { EmptyState, ErrorState } from "@/components/foodup/StateViews";
@@ -11,7 +22,7 @@ import { TrackingMap } from "@/components/map";
 import { Skeleton } from "@/components/ui/skeleton";
 import { supabase } from "@/integrations/supabase/client";
 import { routeLengthKm, type LatLng } from "@/lib/geo";
-import { tickOrder } from "@/lib/orders.functions";
+import { cancelOrder, tickOrder } from "@/lib/orders.functions";
 import { formatBRL } from "@/lib/pricing";
 import { orderQuery } from "@/lib/queries";
 import { statusLabel, type OrderStatus } from "@/lib/simulation";
@@ -35,8 +46,11 @@ function TrackingPage() {
   const { id } = Route.useParams();
   const qc = useQueryClient();
   const { data: order, isLoading, error, refetch } = useQuery(orderQuery(id));
+  const cancel = useServerFn(cancelOrder);
   const tick = useServerFn(tickOrder);
   const [now, setNow] = useState(() => Date.now());
+  const [cancelOpen, setCancelOpen] = useState(false);
+  const [cancelling, setCancelling] = useState(false);
 
   // Realtime: order row + status events.
   useEffect(() => {
@@ -111,6 +125,22 @@ function TrackingPage() {
   const courier = order.couriers;
   const events = [...order.order_status_events].sort((a, b) => a.created_at.localeCompare(b.created_at));
 
+  const confirmCancel = async () => {
+    if (cancelling) return;
+    setCancelling(true);
+    try {
+      await cancel({ data: { orderId: id } });
+      setCancelOpen(false);
+      await qc.invalidateQueries({ queryKey: orderQuery(id).queryKey });
+      await qc.invalidateQueries({ queryKey: ["orders"] });
+      toast.success("Pedido cancelado.");
+    } catch (e) {
+      toast.error(e instanceof Error ? e.message : "Não foi possível cancelar o pedido.");
+    } finally {
+      setCancelling(false);
+    }
+  };
+
   return (
     <div className="min-h-screen bg-muted/60">
       <div className="relative mx-auto min-h-screen w-full max-w-md bg-background">
@@ -135,7 +165,7 @@ function TrackingPage() {
           <div className="mx-auto h-1.5 w-12 rounded-full bg-border" />
           <div className="flex items-start justify-between gap-3">
             <div>
-              {st !== "delivered" && (
+              {st !== "delivered" && st !== "cancelled" && (
                 <span className="inline-flex items-center gap-1.5 rounded-full bg-primary-soft px-2 py-0.5 text-[11px] font-bold text-primary-deep">
                   <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-primary" /> Ao vivo · {Math.floor(elapsed / 60)}:{String(elapsed % 60).padStart(2, "0")}
                 </span>
@@ -149,7 +179,7 @@ function TrackingPage() {
                     : order.address_text}
               </p>
             </div>
-            {st !== "delivered" && (
+            {st !== "delivered" && st !== "cancelled" && (
               <div className="rounded-2xl border border-border px-3 py-2 text-right">
                 <p className="text-xl font-extrabold leading-none">{etaMin}<span className="text-xs font-semibold"> min</span></p>
                 <p className="mt-1 text-[10px] text-muted-foreground">Chega {format(arrival, "HH:mm")}</p>
@@ -157,7 +187,19 @@ function TrackingPage() {
             )}
           </div>
 
-          <OrderStepper status={st} mode={mode} progress={order.route_progress} />
+          {st !== "cancelled" && <OrderStepper status={st} mode={mode} progress={order.route_progress} />}
+
+          {st === "confirmed" && (
+            <PillButton variant="outline" className="w-full" onClick={() => setCancelOpen(true)}>
+              <XCircle className="h-4 w-4" /> Cancelar pedido
+            </PillButton>
+          )}
+
+          {st === "cancelled" && (
+            <div className="rounded-2xl bg-destructive/10 p-4 text-center text-sm font-semibold text-destructive">
+              Este pedido foi cancelado.
+            </div>
+          )}
 
           {st === "delivered" && (
             <div className="rounded-2xl bg-success-soft p-4 text-center animate-fade-up">
@@ -225,6 +267,30 @@ function TrackingPage() {
           </section>
         </div>
       </div>
+
+      <AlertDialog open={cancelOpen} onOpenChange={(open) => !cancelling && setCancelOpen(open)}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Cancelar este pedido?</AlertDialogTitle>
+            <AlertDialogDescription>
+              O cancelamento só será concluído se o restaurante ainda não tiver começado a preparar seu pedido.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel disabled={cancelling}>Continuar com o pedido</AlertDialogCancel>
+            <AlertDialogAction
+              disabled={cancelling}
+              onClick={(event) => {
+                event.preventDefault();
+                void confirmCancel();
+              }}
+            >
+              {cancelling && <LoaderCircle className="h-4 w-4 animate-spin" />}
+              Confirmar cancelamento
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </div>
   );
 }

@@ -4,6 +4,16 @@ import { Clock, Flame, Star, Truck } from "lucide-react";
 import { toast } from "sonner";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Skeleton } from "@/components/ui/skeleton";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "@/components/ui/alert-dialog";
 import { BottomSheet } from "./BottomSheet";
 import { PillButton } from "./PillButton";
 import { QuantityStepper } from "./QuantityStepper";
@@ -63,10 +73,14 @@ function ItemDetailBody({ item, restaurant, onDone }: { item: MenuItem; restaura
   const otherRestaurant = cartRestaurant && cartRestaurant.id !== restaurant.id;
 
   const add = () => {
-    if (otherRestaurant && !confirmReplace) {
+    if (otherRestaurant) {
       setConfirmReplace(true);
       return;
     }
+    addSelectedLine();
+  };
+
+  const addSelectedLine = () => {
     addLine(
       {
         id: restaurant.id,
@@ -193,18 +207,28 @@ function ItemDetailBody({ item, restaurant, onDone }: { item: MenuItem; restaura
       )}
 
       <div className="sticky bottom-0 border-t border-border bg-card px-5 pb-[calc(env(safe-area-inset-bottom)+16px)] pt-3">
-        {confirmReplace && (
-          <p className="mb-2 rounded-xl bg-primary-soft px-3 py-2 text-xs text-primary-deep">
-            Sua cesta tem itens de <strong>{cartRestaurant?.name}</strong>. Toque de novo para substituí-los.
-          </p>
-        )}
         <div className="flex items-center gap-3">
           <QuantityStepper value={qty} onChange={setQty} />
           <PillButton className="flex-1" onClick={add} disabled={isLoading || !!error}>
-            {confirmReplace ? "Substituir cesta" : "Adicionar à cesta"} · {formatBRL(total)}
+            Adicionar à cesta · {formatBRL(total)}
           </PillButton>
         </div>
       </div>
+
+      <AlertDialog open={confirmReplace} onOpenChange={setConfirmReplace}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Trocar de restaurante?</AlertDialogTitle>
+            <AlertDialogDescription>
+              Sua cesta atual contém itens de {cartRestaurant?.name}. Para adicionar este prato, os itens atuais serão removidos.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>Manter cesta</AlertDialogCancel>
+            <AlertDialogAction onClick={addSelectedLine}>Substituir e adicionar</AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </div>
   );
 }
