@@ -12,7 +12,7 @@ export function ThemeToggle({ className }: { className?: string }) {
       onClick={toggle}
       aria-label={dark ? "Ativar tema claro" : "Ativar tema escuro"}
       className={cn(
-        "flex h-10 w-10 items-center justify-center rounded-xl bg-brand-white/10 text-brand-white transition-colors active:scale-95",
+        "flex h-10 w-10 items-center justify-center rounded-xl bg-foreground/5 text-foreground transition-colors active:scale-95 dark:bg-brand-white/10 dark:text-brand-white",
         className,
       )}
     >

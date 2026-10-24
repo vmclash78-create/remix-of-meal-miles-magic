@@ -29,7 +29,7 @@ function OffersPage() {
   const setCoupon = useCart((s) => s.setCoupon);
   return (
     <MobileShell withNav>
-      <header className="rounded-b-[32px] bg-gradient-header px-5 pb-6 pt-[calc(env(safe-area-inset-top)+20px)] text-primary-foreground">
+      <header className="rounded-b-[32px] bg-gradient-header px-5 pb-6 pt-[calc(env(safe-area-inset-top)+20px)] text-foreground dark:text-brand-white">
         <h1 className="text-2xl font-bold">Ofertas</h1>
         <p className="text-sm opacity-85">Resgate um cupom e ele vai direto para sua cesta</p>
       </header>

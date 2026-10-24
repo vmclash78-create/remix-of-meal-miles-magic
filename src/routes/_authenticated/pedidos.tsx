@@ -36,7 +36,7 @@ function OrdersPage() {
 
   return (
     <MobileShell withNav>
-      <header className="rounded-b-[32px] bg-gradient-header px-5 pb-6 pt-[calc(env(safe-area-inset-top)+20px)] text-brand-white">
+      <header className="rounded-b-[32px] bg-gradient-header px-5 pb-6 pt-[calc(env(safe-area-inset-top)+20px)] text-foreground dark:text-brand-white">
         <h1 className="text-2xl font-bold">Pedidos</h1>
         <p className="text-sm opacity-80">Acompanhe e repita seus pedidos</p>
       </header>

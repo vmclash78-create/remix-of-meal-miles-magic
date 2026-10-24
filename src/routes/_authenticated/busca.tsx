@@ -52,7 +52,7 @@ function SearchPage() {
 
   return (
     <MobileShell withNav>
-      <header className="rounded-b-[32px] bg-gradient-header px-5 pb-6 pt-[calc(env(safe-area-inset-top)+20px)] text-brand-white">
+      <header className="rounded-b-[32px] bg-gradient-header px-5 pb-6 pt-[calc(env(safe-area-inset-top)+20px)] text-foreground dark:text-brand-white">
         <h1 className="text-2xl font-bold">Busca</h1>
         <p className="text-sm opacity-80">Restaurantes, pratos e categorias</p>
         <label className="mt-4 flex h-12 items-center gap-3 rounded-full bg-card px-4 shadow-soft">

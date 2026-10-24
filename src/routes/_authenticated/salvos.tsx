@@ -26,7 +26,7 @@ function SavedPage() {
   const { data, isLoading, error, refetch } = useQuery(favoritesQuery(user.id));
   return (
     <MobileShell withNav>
-      <header className="rounded-b-[32px] bg-gradient-header px-5 pb-6 pt-[calc(env(safe-area-inset-top)+20px)] text-primary-foreground">
+      <header className="rounded-b-[32px] bg-gradient-header px-5 pb-6 pt-[calc(env(safe-area-inset-top)+20px)] text-foreground dark:text-brand-white">
         <h1 className="text-2xl font-bold">Salvos</h1>
         <p className="text-sm opacity-85">Seus restaurantes favoritos</p>
       </header>

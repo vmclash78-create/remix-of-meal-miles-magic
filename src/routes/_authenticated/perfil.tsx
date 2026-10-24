@@ -62,13 +62,13 @@ function ProfilePage() {
 
   return (
     <MobileShell withNav>
-      <header className="rounded-b-[32px] bg-gradient-header px-5 pb-8 pt-[calc(env(safe-area-inset-top)+20px)] text-primary-foreground">
+      <header className="rounded-b-[32px] bg-gradient-header px-5 pb-8 pt-[calc(env(safe-area-inset-top)+20px)] text-foreground dark:text-brand-white">
         <div className="flex items-center gap-4">
           <div className="flex h-16 w-16 items-center justify-center overflow-hidden rounded-full bg-card text-xl font-bold text-primary-deep">
             {profile.data?.avatar_url ? <img src={profile.data.avatar_url} alt="" className="h-full w-full object-cover" /> : name.slice(0, 1).toUpperCase()}
           </div>
           <div className="min-w-0 flex-1">
-            {profile.isLoading ? <Skeleton className="h-5 w-32 bg-primary-foreground/30" /> : <p className="truncate text-lg font-bold">{name}</p>}
+            {profile.isLoading ? <Skeleton className="h-5 w-32 bg-foreground/10 dark:bg-brand-white/30" /> : <p className="truncate text-lg font-bold">{name}</p>}
             <p className="truncate text-sm opacity-85">{user.email}</p>
           </div>
           <ThemeToggle className="shrink-0" />

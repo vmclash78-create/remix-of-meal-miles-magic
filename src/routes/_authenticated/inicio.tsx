@@ -87,19 +87,19 @@ function HomePage() {
       {/* Header escuro da marca: logo em SVG (nunca o mascote) */}
       <header className="rounded-b-[32px] bg-gradient-header px-5 pb-6 pt-[calc(env(safe-area-inset-top)+16px)]">
         <div className="flex items-center justify-between gap-3">
-          <Logo theme="dark" className="h-7" />
+          <Logo className="h-7" />
           <Link to="/perfil" aria-label="Perfil" className="flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-full bg-card text-sm font-bold text-primary-deep ring-2 ring-primary/50">
             {profile.data?.avatar_url ? <img src={profile.data.avatar_url} alt="" className="h-full w-full object-cover" /> : initials || "?"}
           </Link>
         </div>
         <button type="button" onClick={() => setAddrOpen(true)} className="mt-4 block w-full min-w-0 text-left">
-          <span className="flex items-center gap-1 text-[11px] font-medium text-brand-white/70">
+          <span className="flex items-center gap-1 text-[11px] font-medium text-foreground/70 dark:text-brand-white/70">
             <MapPin className="h-3 w-3 text-primary" /> Entregar em
           </span>
           {addrLoading ? (
             <Skeleton className="mt-1 h-4 w-40 bg-brand-white/20" />
           ) : (
-            <span className="flex items-center gap-1 text-sm font-bold text-brand-white">
+            <span className="flex items-center gap-1 text-sm font-bold text-foreground dark:text-brand-white">
               <span className="truncate">
                 {address ? `${address.label} · ${address.line1}` : "Defina seu endereço"}
               </span>
@@ -116,9 +116,9 @@ function HomePage() {
       <div className="space-y-7 pt-5">
         {/* Banner */}
         <section className="px-5">
-          <div className="relative overflow-hidden rounded-[24px] bg-gradient-header p-5 text-brand-white shadow-soft">
+          <div className="relative overflow-hidden rounded-[24px] bg-gradient-header p-5 text-foreground shadow-soft dark:text-brand-white">
             <div className="relative z-10 max-w-[58%]">
-              <p className="text-[11px] font-semibold uppercase tracking-wider text-highlight">Delivery do seu jeito</p>
+              <p className="text-[11px] font-semibold uppercase tracking-wider text-primary-deep dark:text-highlight">Delivery do seu jeito</p>
               <h2 className="mt-1 text-xl font-extrabold leading-tight">Os melhores restaurantes, mais perto de você</h2>
               <p className="mt-1 text-xs opacity-80">Frete grátis com o cupom FRETEGRATIS.</p>
               <button

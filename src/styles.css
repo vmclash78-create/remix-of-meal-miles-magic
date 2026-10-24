@@ -91,7 +91,7 @@
   --success: var(--brand-green);
   --success-foreground: var(--brand-white);
   --success-soft: color-mix(in oklab, var(--brand-green) 14%, #ffffff);
-  --header: var(--brand-black);
+  --header: #ffffff;
   --secondary: #efefef;
   --secondary-foreground: #0f0f0f;
   --muted: #efefef;
@@ -105,7 +105,7 @@
   --input: #efefef;
   --ring: var(--brand-orange);
   --gradient-header:
-    radial-gradient(120% 90% at 100% 0%, color-mix(in oklab, var(--brand-orange) 30%, transparent), transparent 60%),
+    radial-gradient(120% 90% at 100% 0%, color-mix(in oklab, var(--brand-orange) 18%, transparent), transparent 60%),
     var(--header);
   --shadow-soft-value: 0 6px 24px -12px rgb(15 15 15 / 0.18);
   --shadow-float-value: 0 -8px 32px -14px rgb(15 15 15 / 0.22);
@@ -149,6 +149,9 @@
   --input: #2a2a2a;
   --shadow-soft-value: 0 6px 24px -12px rgb(0 0 0 / 0.6);
   --shadow-float-value: 0 -8px 32px -14px rgb(0 0 0 / 0.7);
+  --gradient-header:
+    radial-gradient(120% 90% at 100% 0%, color-mix(in oklab, var(--brand-orange) 30%, transparent), transparent 60%),
+    var(--header);
   --sidebar: #1a1a1a;
   --sidebar-foreground: #ffffff;
   --sidebar-accent: #2a2a2a;
