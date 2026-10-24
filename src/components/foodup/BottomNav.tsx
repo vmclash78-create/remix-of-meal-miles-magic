@@ -18,7 +18,7 @@ export function BottomNav() {
         <Link
           to="/cesta"
           aria-label={`Ver cesta, ${count} ${count === 1 ? "item" : "itens"}`}
-          className="fixed bottom-[calc(env(safe-area-inset-bottom)+76px)] left-1/2 z-40 flex w-[calc(min(100vw,28rem)-40px)] -translate-x-1/2 items-center justify-between rounded-xl bg-primary px-4 py-3 text-sm font-bold text-primary-foreground shadow-soft active:scale-[0.98]"
+          className="animate-fade-up fixed bottom-[calc(env(safe-area-inset-bottom)+76px)] left-1/2 z-40 flex w-[calc(min(100vw,28rem)-40px)] -translate-x-1/2 items-center justify-between rounded-xl bg-primary px-4 py-3 text-sm font-bold text-primary-foreground shadow-soft transition-[transform,box-shadow] duration-200 hover:shadow-float active:scale-[0.98] motion-reduce:transition-none"
         >
           <span className="flex items-center gap-2">
             <ShoppingBag className="h-4 w-4" /> Ver cesta
@@ -41,7 +41,10 @@ export function BottomNav() {
               >
                 <span className="absolute top-0 h-0.5 w-8 rounded-full bg-primary opacity-0 transition-opacity group-data-[status=active]:opacity-100" />
                 <span className="relative flex h-9 w-12 items-center justify-center rounded-full transition-colors group-data-[status=active]:bg-primary-soft">
-                  <Icon className="h-5 w-5" strokeWidth={2} />
+                  <Icon
+                    className="h-5 w-5 group-data-[status=active]:animate-pop-in motion-reduce:animate-none"
+                    strokeWidth={2}
+                  />
                 </span>
                 {label}
               </Link>

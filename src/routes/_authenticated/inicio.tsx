@@ -134,7 +134,7 @@ function HomePage() {
         </section>
 
         {/* Categories */}
-        <section>
+        <section className="animate-fade-up" style={{ animationDelay: "70ms" }}>
           <SectionTitle title="Categorias" />
           <div className="no-scrollbar mt-3 flex gap-3 overflow-x-auto px-5 pb-1">
             {categories.isLoading
@@ -162,7 +162,7 @@ function HomePage() {
         </section>
 
         {/* Order again */}
-          <section>
+          <section className="animate-fade-up" style={{ animationDelay: "130ms" }}>
             <SectionTitle title="Peça de novo" />
             <div className="no-scrollbar mt-3 flex gap-3 overflow-x-auto px-5 pb-1">
               {orders.isLoading ? (
@@ -196,7 +196,7 @@ function HomePage() {
           </section>
 
         {/* Deals */}
-          <section>
+          <section className="animate-fade-up" style={{ animationDelay: "190ms" }}>
             <SectionTitle title="Ofertas para você" link={{ to: "/ofertas", label: "Ver todas" }} />
             <div className="no-scrollbar mt-3 flex gap-3 overflow-x-auto px-5 pb-1">
               {coupons.isLoading
@@ -216,7 +216,7 @@ function HomePage() {
           </section>
 
         {/* Restaurants */}
-        <section className="px-5 pb-4">
+        <section className="animate-fade-up px-5 pb-4" style={{ animationDelay: "250ms" }}>
           <h2 className="text-base font-bold text-foreground">
             Restaurantes perto de você
           </h2>

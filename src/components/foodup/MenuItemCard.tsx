@@ -13,7 +13,7 @@ export function MenuItemCard({ item, onSelect }: MenuItemCardProps) {
     <button
       type="button"
       onClick={() => onSelect(item)}
-      className="group flex flex-col rounded-[20px] bg-card p-3 text-left shadow-soft transition-transform active:scale-[0.98]"
+      className="group flex flex-col rounded-[20px] bg-card p-3 text-left shadow-soft transition-[transform,box-shadow] duration-300 ease-out hover:-translate-y-1 hover:shadow-float active:translate-y-0 active:scale-[0.985] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background motion-reduce:transform-none motion-reduce:transition-none"
     >
       <p className="line-clamp-1 text-center text-sm font-bold text-foreground">{item.name}</p>
       <p className="text-center text-xs font-semibold text-primary-deep">{formatBRL(Number(item.price))}</p>
@@ -22,7 +22,7 @@ export function MenuItemCard({ item, onSelect }: MenuItemCardProps) {
           src={`${item.image_url.split("?")[0]}?w=360&h=360&fit=crop&q=70`}
           alt={item.name}
           loading="lazy"
-          className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+          className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105 motion-reduce:transform-none motion-reduce:transition-none"
         />
       </div>
       <div className="mt-auto flex items-end justify-between">
@@ -36,7 +36,7 @@ export function MenuItemCard({ item, onSelect }: MenuItemCardProps) {
         </div>
         <span
           aria-label={`Adicionar ${item.name}`}
-          className="flex h-8 w-8 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-soft"
+          className="flex h-8 w-8 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-soft transition-transform duration-200 group-hover:scale-110 motion-reduce:transform-none motion-reduce:transition-none"
         >
           <Plus className="h-4 w-4" />
         </span>

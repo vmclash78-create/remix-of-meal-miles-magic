@@ -10,14 +10,14 @@ export function RestaurantCard({ restaurant }: { restaurant: Restaurant }) {
     <Link
       to="/restaurante/$slug"
       params={{ slug: restaurant.slug }}
-      className="group block overflow-hidden rounded-[20px] bg-card shadow-soft transition-transform active:scale-[0.98]"
+      className="group block overflow-hidden rounded-[20px] bg-card shadow-soft transition-[transform,box-shadow] duration-300 ease-out hover:-translate-y-1 hover:shadow-float active:translate-y-0 active:scale-[0.985] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background motion-reduce:transform-none motion-reduce:transition-none"
     >
       <div className="relative aspect-[4/3] overflow-hidden">
         <img
           src={`${restaurant.cover_url.split("?")[0]}?w=500&q=70`}
           alt={restaurant.name}
           loading="lazy"
-          className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+          className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105 motion-reduce:transform-none motion-reduce:transition-none"
         />
         {restaurant.discount_pct > 0 && (
           <span className="absolute bottom-2 left-2 inline-flex items-center gap-1 rounded-full bg-primary px-2 py-0.5 text-[11px] font-bold text-primary-foreground">
